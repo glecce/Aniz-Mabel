@@ -1,12 +1,12 @@
 import { readFileSync } from 'node:fs';
 import { catalogFile, checkAsset, checkCatalog, loadJSON, siteAddress, siteRoot } from './catalogo.mjs';
 
-const routes = ['', 'visual/', 'visual/video/', 'visual/colagem/', 'visual/pinturas-desenhos/'];
+const routes = ['', 'texto/', 'musica/', 'visual/', 'visual/video/', 'visual/colagem/', 'visual/pinturas-desenhos/'];
 
 try {
   for (const route of routes) {
     const html = readFileSync(new URL(route + 'index.html', siteRoot), 'utf8');
-    const canonical = new URL(route || 'visual/', siteAddress).href;
+    const canonical = new URL(route, siteAddress).href;
     if (!html.includes(`<link rel="canonical" href="${canonical}">`)) {
       throw new Error(`Endereço canônico ausente ou errado em /${route}`);
     }

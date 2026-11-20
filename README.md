@@ -1,28 +1,31 @@
 # Aniz Mabel
 
-O endereço do portfólio é [anizmabel.com/visual/](https://anizmabel.com/visual/).
+O endereço principal é [anizmabel.com](https://anizmabel.com/). A entrada reúne [Texto](https://anizmabel.com/texto/), [Visual](https://anizmabel.com/visual/) e [Música](https://anizmabel.com/musica/).
 
 ## Onde editar
 
 | Arquivo ou pasta | O que controla |
 |---|---|
+| `site/index.html` e `site/assets/inicio.css` | Página inicial e estilo de Texto e Música |
+| `site/texto/index.html` | Publicações escritas |
+| `site/musica/index.html` | Projetos musicais |
 | `site/visual/index.html` | Página das fotos e janela de ampliação |
 | `site/visual/estilo.css` | Aparência da galeria e das outras páginas |
 | `site/visual/galeria.js` | Carregamento das fotos, dados técnicos e navegação entre imagens |
 | `site/visual/fotos.json` | Ordem, títulos, endereços, câmera, exposição e localização das fotos |
 | `site/visual/trabalhos.json` | Conteúdo de vídeos, colagens, pinturas e desenhos |
 | `site/assets/fotos/` | Miniaturas e versões ampliadas que o próprio site serve |
-| `site/_redirects` | Encaminha a entrada e os endereços antigos para `/visual/` no Cloudflare Pages |
+| `site/_redirects` | Encaminha os endereços antigos para `/visual/` no Cloudflare Pages |
 
 ## Ver no computador
 
-Abra a pasta **Aniz Mabel** no VS Code e use **Go Live**. O endereço é [127.0.0.1:5500/visual/](http://127.0.0.1:5500/visual/). Outra opção é rodar no terminal:
+Abra a pasta **Aniz Mabel** no VS Code e use **Go Live**. O endereço é [127.0.0.1:5500](http://127.0.0.1:5500/). Outra opção é rodar no terminal:
 
 ```sh
 python3 -m http.server 8787 --bind 127.0.0.1 --directory site
 ```
 
-Nesse caso, abra a [prévia na porta 8787](http://127.0.0.1:8787/visual/).
+Nesse caso, abra a [prévia na porta 8787](http://127.0.0.1:8787/).
 
 ## Publicar uma foto
 
