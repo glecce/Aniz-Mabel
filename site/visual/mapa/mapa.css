@@ -24,10 +24,24 @@
 }
 
 .globe-page {
+  position: relative;
   display: grid;
   place-items: center;
   min-height: 100svh;
 }
+
+.map-back {
+  position: absolute;
+  inset-block-start: clamp(.65rem, 2vw, 1.5rem);
+  inset-inline-start: clamp(.65rem, 2vw, 1.5rem);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  font: 1.65rem/1 system-ui, sans-serif;
+}
+.map-back:is(:hover, :focus-visible) { background-color: transparent; }
 
 .world-globe {
   display: block;

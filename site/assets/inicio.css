@@ -1,4 +1,4 @@
-@import url("./cores.css?v=20261120-7");
+@import url("./cores.css?v=20261120-10");
 
 :root { line-height: 1.45; }
 
@@ -8,6 +8,7 @@ a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
 .edition { width: min(94%, 1510px); margin-inline: auto; }
 .front .edition { padding-block: clamp(1rem, 4vw, 3.1rem); }
 .cover {
+  position: relative;
   display: flex;
   min-height: clamp(150px, 27vw, 310px);
   align-items: center;
@@ -15,6 +16,7 @@ a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
   padding: .6rem 0 1.1rem;
   border-top: 3px solid var(--accent);
 }
+.cover .map-link { position: absolute; inset-block-start: .45rem; inset-inline-start: 0; }
 .cover h1 {
   font: 600 clamp(3.35rem, 14.6vw, 14rem)/1 var(--display-font);
   text-align: center;
@@ -61,5 +63,5 @@ a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
 @media (max-width: 680px) {
   .areas { grid-template-columns: 1fr; }
   .area { min-height: 175px; }
-  .cover { min-height: 122px; }
+  .cover { min-height: 150px; padding-block-start: 3.2rem; }
 }

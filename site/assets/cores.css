@@ -31,6 +31,37 @@ a:focus-visible {
   background-color: var(--accent);
 }
 
+.map-link {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+.map-link:is(:hover, :focus-visible) { background-color: transparent; }
+.globe-symbol {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+.globe-symbol::before {
+  content: '';
+  position: absolute;
+  inset: -1px 5px;
+  border-inline: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+.globe-symbol::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - .75px);
+  inset-inline: 0;
+  border-top: 1.5px solid currentColor;
+}
+
 @media (hover: hover) {
   a:hover {
     color: var(--focus);
