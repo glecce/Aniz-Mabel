@@ -1,12 +1,12 @@
 import { readFileSync } from 'node:fs';
 import { catalogFile, checkAsset, checkCatalog, loadJSON, siteAddress, siteRoot } from './catalogo.mjs';
 
-const routes = ['', 'alternativa/', 'alternativa/video/', 'alternativa/colagem/', 'alternativa/pinturas-desenhos/'];
+const routes = ['', 'visual/', 'visual/video/', 'visual/colagem/', 'visual/pinturas-desenhos/'];
 
 try {
   for (const route of routes) {
     const html = readFileSync(new URL(route + 'index.html', siteRoot), 'utf8');
-    const canonical = new URL(route || 'alternativa/', siteAddress).href;
+    const canonical = new URL(route || 'visual/', siteAddress).href;
     if (!html.includes(`<link rel="canonical" href="${canonical}">`)) {
       throw new Error(`Endereço canônico ausente ou errado em /${route}`);
     }
@@ -14,7 +14,7 @@ try {
   const photos = loadJSON(catalogFile);
   checkCatalog(photos);
 
-  const projects = loadJSON(new URL('alternativa/trabalhos.json', siteRoot));
+  const projects = loadJSON(new URL('visual/trabalhos.json', siteRoot));
   for (const section of ['video', 'colagem', 'pinturas-desenhos']) {
     if (!Array.isArray(projects[section])) throw new Error(`Falta a lista de ${section}.`);
     for (const project of projects[section]) {

@@ -36,7 +36,7 @@ try {
     const pending = new URL(catalogFile.href + `.${process.pid}.tmp`);
     writeFileSync(pending, JSON.stringify(photos, null, 2) + '\n');
     renameSync(pending, catalogFile);
-    console.log(`Foto "${photo.title}" adicionada em site/alternativa/fotos.json.`);
+    console.log(`Foto "${photo.title}" adicionada em site/visual/fotos.json.`);
     console.log('Confira a prévia e envie a mudança ao GitHub para atualizar o Pages.');
   }
 } catch (error) {

@@ -100,8 +100,6 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
 .viewer-nav { width: 44px; border-radius: 50%; font-size: 1.6rem; line-height: 1; }
 .viewer-details { padding: clamp(.8rem, 2vw, 1.45rem); border-left: 1px solid var(--line); }
 .viewer-title { margin: 0 0 .7rem; font: 400 clamp(1.3rem, 2vw, 1.65rem)/1.1 var(--serif); }
-.viewer-location { margin: 0; color: var(--accent); }
-.viewer-location:empty { display: none; }
 .photo-data { margin-top: 1.3rem; }
 .photo-data div { padding-block: .48rem; border-top: 1px solid var(--line); }
 .photo-data dt { font-size: .825rem; color: var(--quiet); }

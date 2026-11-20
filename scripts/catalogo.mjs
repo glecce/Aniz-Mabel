@@ -1,7 +1,7 @@
 import { readFileSync, statSync } from 'node:fs';
 
 export const siteRoot = new URL('../site/', import.meta.url);
-export const catalogFile = new URL('alternativa/fotos.json', siteRoot);
+export const catalogFile = new URL('visual/fotos.json', siteRoot);
 const { config } = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
 export const siteAddress = new URL(config.site_url);
 const mediaAddress = new URL(config.media_url);

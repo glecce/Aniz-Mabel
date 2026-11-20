@@ -1,0 +1,7 @@
+/ /visual/ 301
+/alternativa /visual/ 301
+/alternativa/ /visual/ 301
+/alternativa/editorial.css /visual/estilo.css 301
+/alternativa/editorial.js /visual/galeria.js 301
+/alternativa/* /visual/:splat 301
+/assets/fotos/alternativa/* /assets/fotos/:splat 301

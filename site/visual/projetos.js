@@ -44,7 +44,7 @@ function makeProject(project) {
 }
 
 try {
-  const reply = await fetch('/alternativa/trabalhos.json');
+  const reply = await fetch(new URL('trabalhos.json', import.meta.url));
   if (!reply.ok) throw new Error('Arquivo indisponível.');
   const collection = await reply.json();
   const items = collection[page.dataset.section].map(makeProject).filter(Boolean);

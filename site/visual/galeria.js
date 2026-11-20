@@ -3,7 +3,6 @@ const status = document.querySelector('.wall-status');
 const viewer = document.querySelector('.photo-viewer');
 const image = document.querySelector('.viewer-image');
 const title = document.querySelector('.viewer-title');
-const location = document.querySelector('.viewer-location');
 const counter = document.querySelector('.viewer-counter');
 const data = document.querySelector('.photo-data');
 let photos = [];
@@ -60,7 +59,6 @@ function showPhoto(index) {
   image.src = photo.src;
   image.alt = photo.alt;
   title.textContent = photo.title;
-  location.textContent = [photo.city, photo.country].filter(Boolean).join(', ');
   counter.textContent = `${active + 1} / ${photos.length}`;
   data.replaceChildren(...properties.map(([label, key]) => makeRow(label, photo[key])));
 
@@ -84,7 +82,7 @@ viewer.addEventListener('close', () => {
 });
 
 try {
-  const response = await fetch('/alternativa/fotos.json');
+  const response = await fetch(new URL('fotos.json', import.meta.url));
   if (!response.ok) throw new Error('Catálogo indisponível.');
   photos = await response.json();
   wall.replaceChildren(...photos.map(makeTile));
