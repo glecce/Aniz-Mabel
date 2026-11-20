@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Country — Aniz Mabel</title>
+  <link rel="stylesheet" href="/visual/estilo.css?v=20261120-4">
+  <link rel="stylesheet" href="/visual/mapa/mapa.css?v=20261120-5">
+  <script type="module" src="/visual/galeria.js?v=20261120-5"></script>
+  <script type="module" src="/visual/mapa/pais.js?v=20261120-5"></script>
+</head>
+<body>
+  <header class="atlas-header">
+    <a href="/visual/map/">← World Map</a>
+    <a class="atlas-brand" href="/">Aniz Mabel</a>
+  </header>
+  <main class="country-page">
+    <div class="country-intro">
+      <h1 class="country-title">Country</h1>
+      <noscript><p>Enable JavaScript to view the country archive.</p></noscript>
+    </div>
+    <section class="country-photos" aria-labelledby="country-photos-heading" hidden>
+      <h2 id="country-photos-heading">Photography</h2>
+      <div class="photo-wall" data-country-gallery aria-label="Photographs from this country"></div>
+      <p class="wall-status" role="status"></p>
+    </section>
+    <div class="country-content"></div>
+    <p class="country-status" role="status"></p>
+  </main>
+  <dialog class="photo-viewer" aria-label="Enlarged photograph">
+    <header class="viewer-bar">
+      <p class="viewer-counter" aria-live="polite"></p>
+      <form method="dialog"><button type="submit" class="viewer-close" autofocus>Close <span aria-hidden="true">×</span></button></form>
+    </header>
+    <div class="viewer-content">
+      <div class="viewer-frame">
+        <button type="button" class="viewer-nav viewer-prev" aria-label="Previous photo">‹</button>
+        <img class="viewer-image" alt="">
+        <button type="button" class="viewer-nav viewer-next" aria-label="Next photo">›</button>
+      </div>
+      <aside class="viewer-details" aria-label="Photo details">
+        <div class="photo-data-context" role="group" aria-label="Location and date"></div>
+        <dl class="photo-data photo-data-camera" aria-label="Camera and exposure"></dl>
+      </aside>
+    </div>
+  </dialog>
+</body>
+</html>

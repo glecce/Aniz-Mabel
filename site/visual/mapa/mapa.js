@@ -1,19 +1,14 @@
 import { geoContains, geoDistance, geoGraticule10, geoOrthographic, geoPath } from './geo-bundle.mjs';
-import { countries, countryAddress, countryLabel, getCountry, loadPhotos } from './paises.js?v=20261120-3';
+import { countries, countryAddress, getCountry, loadPhotos } from './paises.js?v=20261120-5';
 
 const canvas = document.querySelector('.world-globe');
 const context = canvas.getContext('2d');
 const status = document.querySelector('.globe-status');
-const reset = document.querySelector('.globe-reset');
-const photoList = document.querySelector('.country-list');
-const form = document.querySelector('.country-form');
-const select = form.querySelector('select');
 const initialRotation = [-8, -34];
 const projection = geoOrthographic().clipAngle(90).precision(.45);
 const path = geoPath(projection, context);
 const graticule = geoGraticule10();
-const counts = new Map();
-const sortedCountries = [...countries].sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+const photographed = new Set();
 let shapes = [];
 let dots = [];
 let rotation = [...initialRotation];
@@ -21,16 +16,6 @@ let frame = 0;
 let diameter = 0;
 let hover;
 let gesture;
-
-for (const country of sortedCountries) {
-  select.add(new Option(country.name, country.code));
-}
-form.hidden = false;
-form.addEventListener('submit', event => {
-  event.preventDefault();
-  const country = getCountry(select.value);
-  if (country) location.assign(countryAddress(country));
-});
 
 function renderPath(geometry, fill, stroke, lineWidth = 1) {
   context.beginPath();
@@ -69,7 +54,7 @@ function draw() {
   renderPath({type: 'Sphere'}, ocean, '#7897ad');
   renderPath(graticule, null, '#7897ad55', .55);
   for (const {country, geometry} of shapes) {
-    const fill = country === hover ? '#78aed1' : counts.has(country) ? '#a6cee6' : '#f6f2e7';
+    const fill = country === hover ? '#78aed1' : photographed.has(country) ? '#a6cee6' : '#f6f2e7';
     renderPath(geometry, fill, '#8496a0', .55);
   }
 
@@ -78,11 +63,18 @@ function draw() {
     .map(country => ({country, xy: projection(country.point)}));
   for (const {country, xy} of dots) {
     context.beginPath();
-    context.arc(...xy, country === hover || counts.has(country) ? 5 : 2.2, 0, 2 * Math.PI);
+    context.arc(...xy, country === hover || photographed.has(country) ? 5 : 2.2, 0, 2 * Math.PI);
     context.fillStyle = country === hover ? '#172f41' : '#215a7b';
     context.fill();
     context.strokeStyle = '#f7f4ed';
     context.lineWidth = 1;
+    context.stroke();
+  }
+  if (canvas.matches(':focus-visible')) {
+    showCountry(countryAt(mid, mid));
+    context.beginPath();
+    context.arc(mid, mid, 5, 0, 2 * Math.PI);
+    context.strokeStyle = '#215a7b';
     context.stroke();
   }
 }
@@ -120,8 +112,8 @@ function showCountry(country) {
   if (country === hover) return;
   hover = country;
   canvas.toggleAttribute('data-hover', Boolean(country));
-  if (country) status.replaceChildren(countryLabel(country));
-  else status.textContent = '';
+  canvas.title = country?.name ?? '';
+  status.textContent = canvas.title;
   requestDraw();
 }
 
@@ -129,18 +121,22 @@ function startGlobe() {
   new ResizeObserver(requestDraw).observe(canvas);
   requestDraw();
   status.textContent = '';
-  reset.hidden = false;
-  reset.addEventListener('click', () => {
-    rotation = [...initialRotation];
-    showCountry(undefined);
-    requestDraw();
-  });
-
-  const step = {ArrowLeft: [-12, 0], ArrowRight: [12, 0], ArrowUp: [0, -12], ArrowDown: [0, 12]};
+  canvas.addEventListener('focus', requestDraw);
+  canvas.addEventListener('blur', requestDraw);
+  const step = {ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1]};
   canvas.addEventListener('keydown', event => {
-    if (!Object.hasOwn(step, event.key)) return;
-    event.preventDefault();
-    rotate(...step[event.key]);
+    if (Object.hasOwn(step, event.key)) {
+      event.preventDefault();
+      rotate(...step[event.key].map(direction => direction * (event.shiftKey ? 1 : 12)));
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      rotation = [...initialRotation];
+      requestDraw();
+    } else if (event.key === 'Enter') {
+      const center = canvas.clientWidth / 2;
+      const country = countryAt(center, center);
+      if (country) location.assign(countryAddress(country));
+    }
   });
   canvas.addEventListener('pointerdown', event => {
     if (!event.isPrimary || event.button !== 0) return;
@@ -180,9 +176,9 @@ function startGlobe() {
 }
 
 async function loadGlobe() {
-  if (!context) throw new Error('Canvas indisponível.');
+  if (!context) throw new Error('Canvas unavailable.');
   const response = await fetch(new URL('fronteiras.json', import.meta.url));
-  if (!response.ok) throw new Error('Mapa indisponível.');
+  if (!response.ok) throw new Error('Map unavailable.');
   const borders = await response.json();
   shapes = borders.map(([code, coordinates]) => ({
     country: getCountry(code),
@@ -191,37 +187,21 @@ async function loadGlobe() {
   startGlobe();
 }
 
-async function loadPhotoList() {
+async function highlightPhotographedCountries() {
   const photos = await loadPhotos();
   for (const photo of photos) {
     const country = getCountry(photo.country);
-    if (country) counts.set(country, (counts.get(country) ?? 0) + 1);
-  }
-  for (const country of sortedCountries.filter(item => counts.has(item))) {
-    const count = counts.get(country);
-    const row = document.createElement('li');
-    const link = document.createElement('a');
-    const total = document.createElement('span');
-    link.href = countryAddress(country);
-    total.className = 'country-count';
-    total.textContent = count === 1 ? '1 foto' : count + ' fotos';
-    link.append(countryLabel(country), total);
-    row.append(link);
-    photoList.append(row);
+    if (country) photographed.add(country);
   }
   if (shapes.length) requestDraw();
 }
 
 await Promise.all([
   loadGlobe().catch(error => {
-    status.textContent = 'Não foi possível carregar o globo. Escolha um país na lista.';
+    status.textContent = 'Could not load the globe.';
+    status.setAttribute('data-error', '');
     canvas.hidden = true;
     console.error(error);
   }),
-  loadPhotoList().catch(error => {
-    const row = document.createElement('li');
-    row.textContent = 'Não foi possível carregar as fotografias.';
-    photoList.append(row);
-    console.error(error);
-  }),
+  highlightPhotographedCountries().catch(error => console.error(error)),
 ]);

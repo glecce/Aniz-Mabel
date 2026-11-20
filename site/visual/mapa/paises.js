@@ -1,15 +1,17 @@
-import { regions } from './paises-dados.js?v=20261120-3';
+import { regions } from './paises-dados.js?v=20261120-5';
 
+const englishNames = new Intl.DisplayNames('en', { type: 'region', fallback: 'none' });
 export const countries = regions.map(([code, name, longitude, latitude, dot]) => ({
   code,
-  name,
+  name: englishNames.of(code) ?? name,
   point: [longitude, latitude],
   dot: Boolean(dot),
 }));
 
 const byCode = new Map(countries.map(country => [country.code, country]));
 const normalize = name => name.normalize('NFD').replace(/\p{Diacritic}/gu, '').trim().toLowerCase();
-const byName = new Map(countries.map(country => [normalize(country.name), country]));
+const byName = new Map(regions.map(([code, name]) => [normalize(name), byCode.get(code)]));
+for (const country of countries) byName.set(normalize(country.name), country);
 
 export function getCountry(value) {
   if (typeof value !== 'string') return undefined;
@@ -17,7 +19,7 @@ export function getCountry(value) {
 }
 
 export function countryAddress(country) {
-  return '/visual/mapa/pais/?pais=' + country.code;
+  return '/visual/map/country/?country=' + country.code;
 }
 
 export function countryFlag(country) {
@@ -37,6 +39,6 @@ export function countryLabel(country) {
 
 export async function loadPhotos() {
   const response = await fetch('/visual/fotos.json');
-  if (!response.ok) throw new Error('Catálogo indisponível.');
+  if (!response.ok) throw new Error('Photo catalog unavailable.');
   return response.json();
 }

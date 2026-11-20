@@ -4,3 +4,16 @@
 /alternativa/editorial.js /visual/galeria.js 301
 /alternativa/* /visual/:splat 301
 /assets/fotos/alternativa/* /assets/fotos/:splat 301
+/texto /writing/ 301
+/texto/ /writing/ 301
+/musica /music/ 301
+/musica/ /music/ 301
+/visual/video /visual/videos/ 301
+/visual/video/ /visual/videos/ 301
+/visual/colagem /visual/collage/ 301
+/visual/colagem/ /visual/collage/ 301
+/visual/pinturas-desenhos /visual/paint/ 301
+/visual/pinturas-desenhos/ /visual/paint/ 301
+/visual/mapa /visual/map/ 301
+/visual/mapa/ /visual/map/ 301
+/visual/mapa/fontes.txt /visual/map/credits.txt 301

@@ -45,11 +45,11 @@ function makeProject(project) {
 
 try {
   const reply = await fetch(new URL('trabalhos.json', import.meta.url));
-  if (!reply.ok) throw new Error('Arquivo indisponível.');
+  if (!reply.ok) throw new Error('Project catalog unavailable.');
   const collection = await reply.json();
   const items = collection[page.dataset.section].map(makeProject).filter(Boolean);
   grid.replaceChildren(...items);
   empty.hidden = items.length > 0;
 } catch {
-  empty.textContent = 'Não foi possível carregar os trabalhos.';
+  empty.textContent = 'Could not load the work.';
 }

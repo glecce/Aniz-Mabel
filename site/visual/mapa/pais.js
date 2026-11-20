@@ -1,25 +1,25 @@
-import { countryFlag, getCountry } from './paises.js?v=20261120-3';
+import { countryFlag, getCountry } from './paises.js?v=20261120-5';
 
 const title = document.querySelector('.country-title');
 const content = document.querySelector('.country-content');
 const status = document.querySelector('.country-status');
-const country = getCountry(new URLSearchParams(location.search).get('pais'));
+const country = getCountry(new URLSearchParams(location.search).get('country'));
 const sections = [
-  ['video', 'Vídeo'],
-  ['musica', 'Música'],
-  ['texto', 'Escrita'],
+  ['video', 'Video'],
+  ['musica', 'Music'],
+  ['texto', 'Writing'],
 ];
 
 if (!country) {
-  title.textContent = 'País não encontrado';
-  status.textContent = 'Volte ao mapa para escolher um país.';
+  title.textContent = 'Country not found';
+  status.textContent = 'Return to the map to choose a country.';
 } else {
   title.replaceChildren(countryFlag(country), country.name);
   document.title = country.name + ' — Aniz Mabel';
 
   try {
     const response = await fetch(new URL('conteudos.json', import.meta.url));
-    if (!response.ok) throw new Error('Conteúdos indisponíveis.');
+    if (!response.ok) throw new Error('Country archive unavailable.');
     const catalog = await response.json();
     for (const [key, heading] of sections) {
       const items = catalog[key].filter(item => getCountry(item.country) === country);
@@ -40,7 +40,7 @@ if (!country) {
       content.append(section);
     }
   } catch (error) {
-    status.textContent = 'Não foi possível carregar os outros trabalhos.';
+    status.textContent = 'Could not load the other work.';
     console.error(error);
   }
 }

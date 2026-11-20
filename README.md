@@ -1,6 +1,6 @@
 # Aniz Mabel
 
-O endereço principal é [anizmabel.com](https://anizmabel.com/). A entrada reúne [Texto](https://anizmabel.com/texto/), [Visual](https://anizmabel.com/visual/) e [Música](https://anizmabel.com/musica/).
+O endereço principal é [anizmabel.com](https://anizmabel.com/). A entrada reúne [Texto](https://anizmabel.com/writing/), [Visual](https://anizmabel.com/visual/) e [Música](https://anizmabel.com/music/).
 
 ## Onde editar
 
@@ -8,8 +8,8 @@ O endereço principal é [anizmabel.com](https://anizmabel.com/). A entrada reú
 |---|---|
 | `site/index.html` e `site/assets/inicio.css` | Página inicial e estilo de Texto e Música |
 | `site/assets/cores.css` | Cores compartilhadas por todo o site |
-| `site/texto/index.html` | Publicações escritas |
-| `site/musica/index.html` | Projetos musicais |
+| `site/writing/index.html` | Publicações escritas |
+| `site/music/index.html` | Projetos musicais |
 | `site/visual/index.html` | Página das fotos e janela de ampliação |
 | `site/visual/estilo.css` | Aparência da galeria e das outras páginas |
 | `site/visual/galeria.js` | Carregamento das fotos, dados técnicos e navegação entre imagens |
@@ -36,7 +36,7 @@ Nesse caso, abra a [prévia na porta 8787](http://127.0.0.1:8787/).
 3. Rode `npm run check` e envie o commit ao GitHub. O Cloudflare Pages publica a pasta `site/` a cada push em `main`, depois de rodar a mesma verificação.
 
 ```sh
-npm run foto -- fotos/tejo.webp "Fim de tarde no Tejo" --ampliada fotos/tejo-grande.webp --cidade Lisboa --pais Portugal --data 2026-10-15
+npm run foto -- fotos/tejo.webp "Late afternoon on the Tagus" --ampliada fotos/tejo-grande.webp --cidade Lisbon --pais Portugal --data 2026-10-15
 ```
 
 No catálogo de trabalhos, use `title` e `src`. Também é possível informar `description`, `alt` para uma obra em imagem ou `poster` para um vídeo. No caso de vídeo, o endereço deve apontar para o arquivo reproduzível, como um MP4.
@@ -45,6 +45,8 @@ Para incluir uma obra em [Jobs](https://anizmabel.com/visual/jobs/), adicione um
 
 ## Arquivos por país
 
-O [mapa-múndi](https://anizmabel.com/visual/mapa/) usa o campo `country` de `site/visual/fotos.json`. Por exemplo, uma foto com `"country": "Portugal"` aparece na galeria principal e no [arquivo de Portugal](https://anizmabel.com/visual/mapa/pais/?pais=PT).
+O [mapa-múndi](https://anizmabel.com/visual/map/) usa o campo `country` de `site/visual/fotos.json`. Por exemplo, uma foto com `"country": "Portugal"` aparece na galeria principal e no [arquivo de Portugal](https://anizmabel.com/visual/map/country/?country=PT).
 
-Para ligar uma publicação a um país, acrescente um item à lista `video`, `musica` ou `texto` de `site/visual/mapa/conteudos.json`. Informe `country`, `title` e `href`. Em `country`, use o nome em português ou o código de duas letras. Em `href`, use o endereço da publicação, como `/texto/` ou um link público HTTPS.
+Para ligar uma publicação a um país, acrescente um item à lista `video`, `musica` ou `texto` de `site/visual/mapa/conteudos.json`. Informe `country`, `title` e `href`. Em `country`, use o nome em inglês ou o código de duas letras. Em `href`, use o endereço da publicação, como `/writing/` ou um link público HTTPS.
+
+Escreva os títulos, descrições e nomes de lugares em inglês para novas publicações.

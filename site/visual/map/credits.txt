@@ -1,14 +1,14 @@
-Natural Earth, 1:110m Admin 0 Countries e Tiny Countries, edição 5.1.2
+Natural Earth, 1:110m Admin 0 Countries and Tiny Countries, edition 5.1.2
 https://github.com/nvkelso/natural-earth-vector/tree/v5.1.2/geojson
-Dados de domínio público. Coordenadas simplificadas para o globo.
+Public-domain data. Coordinates simplified for the globe.
 https://www.naturalearthdata.com/about/terms-of-use/
 
-Twemoji Country Flags, distribuída sem alterações a partir de country-flag-emoji-polyfill 0.1.8.
-A arte é da Twemoji (Twitter, Inc. e colaboradores), CC BY 4.0.
+Twemoji Country Flags, redistributed unchanged from country-flag-emoji-polyfill 0.1.8.
+Artwork by Twemoji (Twitter, Inc. and contributors), CC BY 4.0.
 https://github.com/twitter/twemoji
 https://creativecommons.org/licenses/by/4.0/
 
-geo-bundle.mjs é compilado a partir de d3-geo 3.1.1 e suas dependências.
+geo-bundle.mjs is compiled from d3-geo 3.1.1 and its dependencies.
 https://github.com/d3/d3-geo/tree/v3.1.1
 
 

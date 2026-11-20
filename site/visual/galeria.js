@@ -1,4 +1,4 @@
-import { countryAddress, countryLabel, getCountry, loadPhotos } from './mapa/paises.js?v=20261120-3';
+import { countryAddress, countryLabel, getCountry, loadPhotos } from './mapa/paises.js?v=20261120-5';
 
 const wall = document.querySelector('.photo-wall');
 const status = document.querySelector('.wall-status');
@@ -14,18 +14,18 @@ let active = -1;
 let imageVersion = 0;
 
 const cameraProperties = [
-  ['Câmera', 'camera'],
-  ['Lente', 'lens'],
+  ['Camera', 'camera'],
+  ['Lens', 'lens'],
   ['ISO', 'iso'],
-  ['Obturador', 'shutter'],
-  ['Abertura', 'aperture'],
+  ['Shutter', 'shutter'],
+  ['Aperture', 'aperture'],
 ];
 
 function makeTile(photo, index) {
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'wall-photo';
-  button.setAttribute('aria-label', `Ampliar: ${photo.alt}`);
+  button.setAttribute('aria-label', `Enlarge: ${photo.alt}`);
   const thumbnail = document.createElement('img');
   thumbnail.src = photo.src;
   thumbnail.alt = '';
@@ -48,7 +48,7 @@ function makeRow(label, value) {
   const name = document.createElement('dt');
   const content = document.createElement('dd');
   name.textContent = label;
-  content.textContent = value || 'Não registrado';
+  content.textContent = value || 'Not recorded';
   content.toggleAttribute('data-missing', !value);
   row.append(name, content);
   return row;
@@ -110,16 +110,16 @@ viewer.addEventListener('close', () => {
   image.removeAttribute('src');
 });
 
-const country = isCountryGallery ? getCountry(new URLSearchParams(location.search).get('pais')) : null;
+const country = isCountryGallery ? getCountry(new URLSearchParams(location.search).get('country')) : null;
 if (!isCountryGallery || country) {
   if (isCountryGallery) wall.closest('.country-photos').hidden = false;
   try {
     const catalog = await loadPhotos();
     photos = country ? catalog.filter(photo => getCountry(photo.country) === country) : catalog;
     wall.replaceChildren(...photos.map(makeTile));
-    if (!photos.length) status.textContent = 'As fotografias serão adicionadas em breve.';
+    if (!photos.length) status.textContent = 'Photographs coming soon.';
   } catch (error) {
-    status.textContent = 'Não foi possível carregar a galeria.';
+    status.textContent = 'Could not load the gallery.';
     console.error(error);
   }
 }

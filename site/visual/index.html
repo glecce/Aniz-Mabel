@@ -1,45 +1,45 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Galeria de fotografia de Aniz Mabel.">
-  <title>Aniz Mabel — Fotografias</title>
+  <meta name="description" content="Photography by Aniz Mabel.">
+  <title>Aniz Mabel — Photography</title>
   <link rel="stylesheet" href="/visual/estilo.css?v=20261120-4">
-  <script type="module" src="/visual/galeria.js?v=20261120-4"></script>
+  <script type="module" src="/visual/galeria.js?v=20261120-5"></script>
   <link rel="canonical" href="https://anizmabel.com/visual/">
 </head>
 <body>
   <header class="masthead gallery-masthead">
-    <a class="map-link" href="/visual/mapa/" aria-label="Abrir mapa-múndi" title="Mapa-múndi"><span class="globe-symbol" aria-hidden="true"></span></a>
-    <h1><a href="/" aria-label="Aniz Mabel — página inicial">Aniz Mabel</a></h1>
-    <nav aria-label="Portfólio">
+    <a class="map-link" href="/visual/map/" aria-label="Open world map" title="World Map"><span class="globe-symbol" aria-hidden="true"></span></a>
+    <h1><a href="/" aria-label="Aniz Mabel — home">Aniz Mabel</a></h1>
+    <nav aria-label="Portfolio">
       <a href="/visual/" aria-current="page">Photos</a>
-      <a href="/visual/video/">Videos</a>
-      <a href="/visual/colagem/">Collage</a>
-      <a href="/visual/pinturas-desenhos/">Paint</a>
+      <a href="/visual/videos/">Videos</a>
+      <a href="/visual/collage/">Collage</a>
+      <a href="/visual/paint/">Painting</a>
       <a href="/visual/jobs/">Jobs</a>
     </nav>
   </header>
   <main>
-    <div class="photo-wall" aria-label="Galeria de fotografias"></div>
+    <div class="photo-wall" aria-label="Photo gallery"></div>
     <p class="wall-status" role="status"></p>
-    <noscript><p class="wall-status">Ative o JavaScript para abrir as fotografias.</p></noscript>
+    <noscript><p class="wall-status">Enable JavaScript to view the photographs.</p></noscript>
   </main>
-  <dialog class="photo-viewer" aria-label="Fotografia ampliada">
+  <dialog class="photo-viewer" aria-label="Enlarged photograph">
     <header class="viewer-bar">
       <p class="viewer-counter" aria-live="polite"></p>
-      <form method="dialog"><button type="submit" class="viewer-close" autofocus>Fechar <span aria-hidden="true">×</span></button></form>
+      <form method="dialog"><button type="submit" class="viewer-close" autofocus>Close <span aria-hidden="true">×</span></button></form>
     </header>
     <div class="viewer-content">
       <div class="viewer-frame">
-        <button type="button" class="viewer-nav viewer-prev" aria-label="Foto anterior">‹</button>
+        <button type="button" class="viewer-nav viewer-prev" aria-label="Previous photo">‹</button>
         <img class="viewer-image" alt="">
-        <button type="button" class="viewer-nav viewer-next" aria-label="Próxima foto">›</button>
+        <button type="button" class="viewer-nav viewer-next" aria-label="Next photo">›</button>
       </div>
-      <aside class="viewer-details" aria-label="Dados da fotografia">
-        <div class="photo-data-context" role="group" aria-label="Local e data"></div>
-        <dl class="photo-data photo-data-camera" aria-label="Câmera e exposição"></dl>
+      <aside class="viewer-details" aria-label="Photo details">
+        <div class="photo-data-context" role="group" aria-label="Location and date"></div>
+        <dl class="photo-data photo-data-camera" aria-label="Camera and exposure"></dl>
       </aside>
     </div>
   </dialog>

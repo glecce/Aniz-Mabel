@@ -2,11 +2,12 @@ import { readFileSync } from 'node:fs';
 import { catalogFile, checkAsset, checkCatalog, loadJSON, siteAddress, siteRoot } from './catalogo.mjs';
 import { getCountry } from '../site/visual/mapa/paises.js';
 
-const routes = ['', 'texto/', 'musica/', 'visual/', 'visual/video/', 'visual/colagem/', 'visual/pinturas-desenhos/', 'visual/jobs/', 'visual/mapa/'];
+const routes = ['', 'writing/', 'music/', 'visual/', 'visual/videos/', 'visual/collage/', 'visual/paint/', 'visual/jobs/', 'visual/map/'];
 
 try {
   for (const route of routes) {
     const html = readFileSync(new URL(route + 'index.html', siteRoot), 'utf8');
+    if (!html.includes('<html lang="en">')) throw new Error(`Idioma incorreto em /${route}`);
     const canonical = new URL(route, siteAddress).href;
     if (!html.includes(`<link rel="canonical" href="${canonical}">`)) {
       throw new Error(`Endereço canônico ausente ou errado em /${route}`);

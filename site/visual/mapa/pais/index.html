@@ -1,48 +1,17 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>País — Aniz Mabel</title>
-  <link rel="stylesheet" href="/visual/estilo.css?v=20261120-4">
-  <link rel="stylesheet" href="/visual/mapa/mapa.css?v=20261120-3">
-  <script type="module" src="/visual/galeria.js?v=20261120-4"></script>
-  <script type="module" src="/visual/mapa/pais.js?v=20261120-3"></script>
+  <title>Country Archive — Aniz Mabel</title>
+  <script type="module">
+    import { countryAddress, getCountry } from '/visual/mapa/paises.js?v=20261120-5';
+
+    const country = getCountry(new URLSearchParams(location.search).get('pais'));
+    location.replace(country ? countryAddress(country) : '/visual/map/');
+  </script>
 </head>
 <body>
-  <header class="atlas-header">
-    <a href="/visual/mapa/">← Mapa-múndi</a>
-    <a class="atlas-brand" href="/">Aniz Mabel</a>
-  </header>
-  <main class="country-page">
-    <div class="country-intro">
-      <h1 class="country-title">País</h1>
-      <noscript><p>Ative o JavaScript para abrir o arquivo do país.</p></noscript>
-    </div>
-    <section class="country-photos" aria-labelledby="country-photos-heading" hidden>
-      <h2 id="country-photos-heading">Fotografia</h2>
-      <div class="photo-wall" data-country-gallery aria-label="Fotografias do país"></div>
-      <p class="wall-status" role="status"></p>
-    </section>
-    <div class="country-content"></div>
-    <p class="country-status" role="status"></p>
-  </main>
-  <dialog class="photo-viewer" aria-label="Fotografia ampliada">
-    <header class="viewer-bar">
-      <p class="viewer-counter" aria-live="polite"></p>
-      <form method="dialog"><button type="submit" class="viewer-close" autofocus>Fechar <span aria-hidden="true">×</span></button></form>
-    </header>
-    <div class="viewer-content">
-      <div class="viewer-frame">
-        <button type="button" class="viewer-nav viewer-prev" aria-label="Foto anterior">‹</button>
-        <img class="viewer-image" alt="">
-        <button type="button" class="viewer-nav viewer-next" aria-label="Próxima foto">›</button>
-      </div>
-      <aside class="viewer-details" aria-label="Dados da fotografia">
-        <div class="photo-data-context" role="group" aria-label="Local e data"></div>
-        <dl class="photo-data photo-data-camera" aria-label="Câmera e exposição"></dl>
-      </aside>
-    </div>
-  </dialog>
+  <a href="/visual/map/">Open the world map</a>
 </body>
 </html>
