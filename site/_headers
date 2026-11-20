@@ -1,8 +1,8 @@
 /visual/estilo.css
-  Cache-Control: no-cache
+  Cache-Control: private, no-cache
 /visual/galeria.js
-  Cache-Control: no-cache
+  Cache-Control: private, no-cache
 /visual/projetos.js
-  Cache-Control: no-cache
+  Cache-Control: private, no-cache
 /assets/cores.css
-  Cache-Control: no-cache
+  Cache-Control: private, no-cache
