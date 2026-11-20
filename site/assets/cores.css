@@ -1,0 +1,13 @@
+:root {
+  color-scheme: light;
+  --background: #f7f4ed;
+  --ink: #171715;
+  --muted: #514c45;
+  --line: #c8c1b5;
+  --accent: #b9ddf3;
+  --accent-soft: #dfedf8;
+  --focus: #215a7b;
+  --serif: Baskerville, 'Iowan Old Style', Georgia, serif;
+  color: var(--ink);
+  background: var(--background);
+}

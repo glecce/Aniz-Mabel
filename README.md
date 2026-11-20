@@ -7,6 +7,7 @@ O endereço principal é [anizmabel.com](https://anizmabel.com/). A entrada reú
 | Arquivo ou pasta | O que controla |
 |---|---|
 | `site/index.html` e `site/assets/inicio.css` | Página inicial e estilo de Texto e Música |
+| `site/assets/cores.css` | Cores compartilhadas por todo o site |
 | `site/texto/index.html` | Publicações escritas |
 | `site/musica/index.html` | Projetos musicais |
 | `site/visual/index.html` | Página das fotos e janela de ampliação |
