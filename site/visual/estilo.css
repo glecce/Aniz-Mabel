@@ -77,7 +77,7 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
 .viewer-close:hover, .viewer-nav:hover { background: var(--accent-soft); }
 .viewer-content {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(200px, 255px);
+  grid-template-rows: minmax(170px, 1fr) auto;
   min-height: 0;
   overflow: auto;
 }
@@ -92,12 +92,14 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
 }
 .viewer-image { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; }
 .viewer-nav { width: 44px; border-radius: 50%; font-size: 1.6rem; line-height: 1; }
-.viewer-details { padding: clamp(.8rem, 2vw, 1.45rem); border-left: 1px solid var(--line); }
+.viewer-details { padding: .8rem clamp(.75rem, 2vw, 1.6rem) 1rem; border-top: 1px solid var(--line); }
 .viewer-title { margin: 0 0 .7rem; font: 400 clamp(1.3rem, 2vw, 1.65rem)/1.1 var(--serif); }
-.photo-data { margin-top: 1.3rem; }
-.photo-data div { padding-block: .48rem; border-top: 1px solid var(--line); }
+.photo-data { display: flex; flex-wrap: wrap; gap: .35rem clamp(.65rem, 2vw, 1.65rem); margin: 0; }
+.photo-data + .photo-data { margin-top: .45rem; }
+.photo-data div { min-width: 0; }
+.photo-data dt, .photo-data dd { display: inline; }
 .photo-data dt { font-size: .825rem; color: var(--muted); }
-.photo-data dd { margin: .14rem 0 0; font: .9rem/1.4 var(--mono); overflow-wrap: anywhere; }
+.photo-data dd { margin: 0 0 0 .35rem; font: .9rem/1.4 var(--mono); overflow-wrap: anywhere; }
 .photo-data dd[data-missing] { color: var(--muted); }
 
 .project-page {
@@ -124,9 +126,6 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
   .masthead { grid-template-columns: 1fr; justify-items: center; }
   .masthead nav { justify-content: center; }
   .photo-wall { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: max(105px, 23vw); }
-  .viewer-content { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(205px, 51svh) auto; }
-  .viewer-details { border-left: 0; border-top: 1px solid var(--line); }
-  .photo-data { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 .75rem; }
   .viewer-nav { width: 37px; }
 }
 @media (max-width: 460px) {

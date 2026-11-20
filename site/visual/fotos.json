@@ -22,7 +22,8 @@
     "shutter": "1/1000 s",
     "aperture": "f/9",
     "country": "Portugal",
-    "city": "Cascais"
+    "city": "Cascais",
+    "date": "2026-10-15"
   },
   {
     "id": "DSC07284",
@@ -38,7 +39,8 @@
     "shutter": "1/250 s",
     "aperture": "f/4.5",
     "country": "Portugal",
-    "city": "Lisboa"
+    "city": "Lisboa",
+    "date": "2026-10-17"
   },
   {
     "id": "Cebo_Egito_Small_Size",
@@ -54,7 +56,8 @@
     "shutter": "1/1250 s",
     "aperture": "f/5.6",
     "country": "Egito",
-    "city": "Cairo"
+    "city": "Cairo",
+    "date": "2026-03-29"
   },
   {
     "id": "DSC04398",
@@ -70,7 +73,8 @@
     "shutter": "1/8000 s",
     "aperture": "f/5",
     "country": "Egito",
-    "city": "Cairo"
+    "city": "Cairo",
+    "date": "2026-03-30"
   },
   {
     "id": "DSC05839",
@@ -86,7 +90,8 @@
     "shutter": "1/1250 s",
     "aperture": "f/16",
     "country": "Malta",
-    "city": ""
+    "city": "",
+    "date": "2026-05-17"
   },
   {
     "id": "DSC00163-2",
@@ -102,7 +107,8 @@
     "shutter": "1/80 s",
     "aperture": "f/8",
     "country": "Espanha",
-    "city": "Barcelona"
+    "city": "Barcelona",
+    "date": "2026-02-21"
   },
   {
     "id": "Magnolia_Small_Size",
@@ -118,7 +124,8 @@
     "shutter": "1/8000 s",
     "aperture": "f/5",
     "country": "Portugal",
-    "city": "Lisboa"
+    "city": "Lisboa",
+    "date": "2026-10-19"
   },
   {
     "id": "DSC01868",
@@ -134,7 +141,8 @@
     "shutter": "1/30 s",
     "aperture": "f/20",
     "country": "Malta",
-    "city": ""
+    "city": "",
+    "date": "2026-03-14"
   },
   {
     "id": "DSC00031",
@@ -150,7 +158,8 @@
     "shutter": "1/160 s",
     "aperture": "f/8",
     "country": "Espanha",
-    "city": "Barcelona"
+    "city": "Barcelona",
+    "date": "2026-02-21"
   },
   {
     "id": "Cezar_Small_Size",
@@ -166,7 +175,8 @@
     "shutter": "1/8000 s",
     "aperture": "f/22",
     "country": "Itália",
-    "city": "Roma"
+    "city": "Roma",
+    "date": "2026-09-27"
   },
   {
     "id": "DSC02965",
@@ -182,7 +192,8 @@
     "shutter": "1/500 s",
     "aperture": "f/5.6",
     "country": "Grécia",
-    "city": "Atenas"
+    "city": "Atenas",
+    "date": "2026-03-27"
   },
   {
     "id": "DSC06606",
@@ -198,7 +209,8 @@
     "shutter": "1/400 s",
     "aperture": "f/5.6",
     "country": "Portugal",
-    "city": "Lisboa"
+    "city": "Lisboa",
+    "date": "2026-10-12"
   },
   {
     "id": "DSC04948",
@@ -214,7 +226,8 @@
     "shutter": "1/640 s",
     "aperture": "f/8",
     "country": "Egito",
-    "city": "Cairo"
+    "city": "Cairo",
+    "date": "2026-03-31"
   },
   {
     "id": "DSC07670-4",
@@ -230,7 +243,8 @@
     "shutter": "1/8000 s",
     "aperture": "f/36",
     "country": "Itália",
-    "city": "Manfredonia"
+    "city": "Manfredonia",
+    "date": "2026-07-17"
   },
   {
     "id": "Cisne_Small_Size",
@@ -246,7 +260,8 @@
     "shutter": "1/640 s",
     "aperture": "f/5.6",
     "country": "Alemanha",
-    "city": "Berlim"
+    "city": "Berlim",
+    "date": "2026-07-26"
   },
   {
     "id": "DSC07105",
@@ -262,7 +277,8 @@
     "shutter": "1/640 s",
     "aperture": "f/5.6",
     "country": "Portugal",
-    "city": "Lisboa"
+    "city": "Lisboa",
+    "date": "2026-10-15"
   },
   {
     "id": "DSC03131",
@@ -278,7 +294,8 @@
     "shutter": "1/2500 s",
     "aperture": "f/9",
     "country": "Grécia",
-    "city": "Atenas"
+    "city": "Atenas",
+    "date": "2026-03-27"
   },
   {
     "id": "DSC06920-3",
@@ -294,7 +311,8 @@
     "shutter": "1/400 s",
     "aperture": "f/5.6",
     "country": "Portugal",
-    "city": "Lisboa"
+    "city": "Lisboa",
+    "date": "2026-10-14"
   },
   {
     "id": "DSC07187-2",
@@ -310,7 +328,8 @@
     "shutter": "1/8000 s",
     "aperture": "f/11",
     "country": "Portugal",
-    "city": "Porto"
+    "city": "Porto",
+    "date": "2026-05-26"
   },
   {
     "id": "DSC06197-2",
@@ -326,7 +345,8 @@
     "shutter": "1/5000 s",
     "aperture": "f/5.6",
     "country": "Portugal",
-    "city": "Lisboa"
+    "city": "Lisboa",
+    "date": "2026-10-11"
   },
   {
     "id": "DSC07517",
@@ -342,7 +362,8 @@
     "shutter": "1/5000 s",
     "aperture": "f/25",
     "country": "Itália",
-    "city": "Manfredonia"
+    "city": "Manfredonia",
+    "date": "2026-07-17"
   },
   {
     "id": "DSC05827",
@@ -358,7 +379,8 @@
     "shutter": "1/1250 s",
     "aperture": "f/16",
     "country": "Malta",
-    "city": ""
+    "city": "",
+    "date": "2026-05-17"
   },
   {
     "id": "DSC03143",
@@ -374,7 +396,8 @@
     "shutter": "1/640 s",
     "aperture": "f/9",
     "country": "Grécia",
-    "city": "Atenas"
+    "city": "Atenas",
+    "date": "2026-03-27"
   },
   {
     "id": "DSC05836",
@@ -390,7 +413,8 @@
     "shutter": "1/1250 s",
     "aperture": "f/16",
     "country": "Malta",
-    "city": ""
+    "city": "",
+    "date": "2026-05-17"
   },
   {
     "id": "DSC06825",
@@ -406,7 +430,8 @@
     "shutter": "1/320 s",
     "aperture": "f/36",
     "country": "Espanha",
-    "city": "Madri"
+    "city": "Madri",
+    "date": "2026-05-24"
   },
   {
     "id": "IMG_0079",
@@ -422,7 +447,8 @@
     "shutter": "1/6400 s",
     "aperture": "f/1.6",
     "country": "Egito",
-    "city": "Al Ahram, Guizé"
+    "city": "Al Ahram, Guizé",
+    "date": "2026-04-04"
   },
   {
     "id": "DSC07381-3",
@@ -438,7 +464,8 @@
     "shutter": "1/640 s",
     "aperture": "f/5.6",
     "country": "Itália",
-    "city": "San Giovanni Rotondo"
+    "city": "San Giovanni Rotondo",
+    "date": "2026-07-10"
   },
   {
     "id": "DSC05832",
@@ -454,7 +481,8 @@
     "shutter": "1/1250 s",
     "aperture": "f/16",
     "country": "Malta",
-    "city": ""
+    "city": "",
+    "date": "2026-05-17"
   },
   {
     "id": "IMG_1469",
@@ -470,7 +498,8 @@
     "shutter": "1/50 s",
     "aperture": "f/1.6",
     "country": "Malta",
-    "city": ""
+    "city": "",
+    "date": "2026-05-20"
   },
   {
     "id": "DSC01925",
@@ -486,6 +515,7 @@
     "shutter": "1/500 s",
     "aperture": "f/5",
     "country": "Malta",
-    "city": ""
+    "city": "",
+    "date": "2026-03-14"
   }
 ]

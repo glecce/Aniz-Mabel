@@ -13,7 +13,7 @@ O endereço principal é [anizmabel.com](https://anizmabel.com/). A entrada reú
 | `site/visual/index.html` | Página das fotos e janela de ampliação |
 | `site/visual/estilo.css` | Aparência da galeria e das outras páginas |
 | `site/visual/galeria.js` | Carregamento das fotos, dados técnicos e navegação entre imagens |
-| `site/visual/fotos.json` | Ordem, títulos, endereços, câmera, exposição e localização das fotos |
+| `site/visual/fotos.json` | Ordem, títulos, endereços, data, localização, câmera e exposição das fotos |
 | `site/visual/trabalhos.json` | Conteúdo de vídeos, colagens, pinturas e desenhos e da página Jobs |
 | `site/assets/fotos/` | Miniaturas e versões ampliadas que o próprio site serve |
 | `site/_redirects` | Encaminha os endereços antigos para `/visual/` no Cloudflare Pages |
@@ -35,7 +35,7 @@ Nesse caso, abra a [prévia na porta 8787](http://127.0.0.1:8787/).
 3. Rode `npm run check` e envie o commit ao GitHub. O Cloudflare Pages publica a pasta `site/` a cada push em `main`, depois de rodar a mesma verificação.
 
 ```sh
-npm run foto -- fotos/tejo.webp "Fim de tarde no Tejo" --ampliada fotos/tejo-grande.webp --cidade Lisboa --pais Portugal
+npm run foto -- fotos/tejo.webp "Fim de tarde no Tejo" --ampliada fotos/tejo-grande.webp --cidade Lisboa --pais Portugal --data 2026-10-15
 ```
 
 No catálogo de trabalhos, use `title` e `src`. Também é possível informar `description`, `alt` para uma obra em imagem ou `poster` para um vídeo. No caso de vídeo, o endereço deve apontar para o arquivo reproduzível, como um MP4.

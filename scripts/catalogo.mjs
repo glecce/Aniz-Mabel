@@ -60,6 +60,13 @@ export function checkCatalog(photos) {
     for (const key of ['city', 'country', 'camera', 'lens', 'iso', 'shutter', 'aperture']) {
       if (photo[key] !== undefined && typeof photo[key] !== 'string') throw new Error(`${photo.id}: ${key} precisa ser texto.`);
     }
+    if (photo.date !== undefined && photo.date !== '') {
+      const validFormat = typeof photo.date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(photo.date);
+      const day = validFormat ? new Date(photo.date + 'T00:00:00Z') : new Date(NaN);
+      if (!Number.isFinite(+day) || day.toISOString().slice(0, 10) !== photo.date) {
+        throw new Error(`${photo.id}: use uma data válida no formato AAAA-MM-DD.`);
+      }
+    }
     if (photo.width !== undefined || photo.height !== undefined) {
       if (![photo.width, photo.height].every(value => Number.isInteger(value) && value > 0)) {
         throw new Error(`${photo.id}: informe largura e altura positivas juntas.`);

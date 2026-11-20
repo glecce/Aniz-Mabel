@@ -4,19 +4,18 @@ const viewer = document.querySelector('.photo-viewer');
 const image = document.querySelector('.viewer-image');
 const title = document.querySelector('.viewer-title');
 const counter = document.querySelector('.viewer-counter');
-const data = document.querySelector('.photo-data');
+const contextData = document.querySelector('.photo-data-context');
+const cameraData = document.querySelector('.photo-data-camera');
 let photos = [];
 let active = -1;
 let imageVersion = 0;
 
-const properties = [
+const cameraProperties = [
   ['Câmera', 'camera'],
   ['Lente', 'lens'],
   ['ISO', 'iso'],
   ['Obturador', 'shutter'],
   ['Abertura', 'aperture'],
-  ['País', 'country'],
-  ['Cidade', 'city'],
 ];
 
 function makeTile(photo, index) {
@@ -60,7 +59,13 @@ function showPhoto(index) {
   image.alt = photo.alt;
   title.textContent = photo.title;
   counter.textContent = `${active + 1} / ${photos.length}`;
-  data.replaceChildren(...properties.map(([label, key]) => makeRow(label, photo[key])));
+  const date = photo.date?.split('-').reverse().join('/');
+  contextData.replaceChildren(
+    makeRow('Cidade', photo.city),
+    makeRow('País', photo.country),
+    makeRow('Data', date),
+  );
+  cameraData.replaceChildren(...cameraProperties.map(([label, key]) => makeRow(label, photo[key])));
 
   if (photo.full && photo.full !== photo.src) {
     const full = new Image();

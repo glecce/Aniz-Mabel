@@ -3,9 +3,9 @@ import { parseArgs } from 'node:util';
 import { catalogFile, checkCatalog, loadJSON, publicMedia } from './catalogo.mjs';
 
 const usage = `npm run foto -- <chave-do-R2-ou-URL> "<título>" [opções]
-Opções: --ampliada --alt --id --cidade --pais --camera --lente --iso --obturador --abertura.
-Exemplo: npm run foto -- fotos/tejo.webp "Fim de tarde" --cidade Lisboa --pais Portugal`;
-const fields = { cidade: 'city', pais: 'country', camera: 'camera', lente: 'lens', iso: 'iso', obturador: 'shutter', abertura: 'aperture' };
+Opções: --ampliada --alt --id --cidade --pais --data --camera --lente --iso --obturador --abertura.
+Exemplo: npm run foto -- fotos/tejo.webp "Fim de tarde" --cidade Lisboa --pais Portugal --data 2026-10-15`;
+const fields = { cidade: 'city', pais: 'country', data: 'date', camera: 'camera', lente: 'lens', iso: 'iso', obturador: 'shutter', abertura: 'aperture' };
 
 try {
   const stringOptions = ['ampliada', 'alt', 'id', ...Object.keys(fields)];
