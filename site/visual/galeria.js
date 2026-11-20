@@ -1,4 +1,4 @@
-import { countryAddress, countryLabel, getCountry, loadPhotos } from './mapa/paises.js';
+import { countryAddress, countryLabel, getCountry, loadPhotos } from './mapa/paises.js?v=20261120-3';
 
 const wall = document.querySelector('.photo-wall');
 const status = document.querySelector('.wall-status');

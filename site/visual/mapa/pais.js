@@ -1,4 +1,4 @@
-import { countryFlag, getCountry } from './paises.js';
+import { countryFlag, getCountry } from './paises.js?v=20261120-3';
 
 const title = document.querySelector('.country-title');
 const content = document.querySelector('.country-content');

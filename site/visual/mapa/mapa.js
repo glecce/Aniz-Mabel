@@ -1,5 +1,5 @@
 import { geoContains, geoDistance, geoGraticule10, geoOrthographic, geoPath } from './geo-bundle.mjs';
-import { countries, countryAddress, countryLabel, getCountry, loadPhotos } from './paises.js';
+import { countries, countryAddress, countryLabel, getCountry, loadPhotos } from './paises.js?v=20261120-3';
 
 const canvas = document.querySelector('.world-globe');
 const context = canvas.getContext('2d');

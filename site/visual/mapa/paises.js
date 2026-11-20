@@ -1,4 +1,4 @@
-import { regions } from './paises-dados.js';
+import { regions } from './paises-dados.js?v=20261120-3';
 
 export const countries = regions.map(([code, name, longitude, latitude, dot]) => ({
   code,
