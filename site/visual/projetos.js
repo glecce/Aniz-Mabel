@@ -18,7 +18,7 @@ function makeProject(project) {
   const src = imageSource(project.src);
   if (!src || !project.title) return null;
   const item = document.createElement('article');
-  const video = page.dataset.section === 'video';
+  const video = (project.type ?? (page.dataset.section === 'video' ? 'video' : 'image')) === 'video';
   const media = document.createElement(video ? 'video' : 'img');
   media.src = src;
   if (video) {
