@@ -8,8 +8,7 @@
   border-bottom: 1px solid var(--line);
 }
 
-.atlas-header a { text-decoration: none; width: fit-content; }
-.atlas-header a:hover { text-decoration: underline; }
+.atlas-header a { width: fit-content; }
 .atlas-brand { font: clamp(1.4rem, 3vw, 2.35rem)/1 var(--serif); letter-spacing: -.045em; }
 
 .country-page {

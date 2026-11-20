@@ -1,4 +1,4 @@
-@import url("../assets/cores.css?v=20261120");
+@import url("../assets/cores.css?v=20261120-6");
 
 :root {
   --mono: 'Courier New', monospace;
@@ -7,7 +7,6 @@
 }
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; font: 16px/1.35 Arial, Helvetica, sans-serif; }
-a { color: inherit; text-underline-offset: .23em; }
 button { font: inherit; color: inherit; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 [hidden] { display: none !important; }
@@ -22,10 +21,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
   border-bottom: 1px solid var(--line);
 }
 .masthead h1 { grid-column: 2; margin: 0; font: 400 clamp(1.65rem, 2.4vw, 2.5rem)/1 var(--serif); letter-spacing: -.045em; }
-.masthead a { text-decoration: none; }
 .masthead nav { display: flex; justify-content: end; align-items: center; flex-wrap: wrap; column-gap: clamp(.65rem, 1.35vw, 1.3rem); font-size: .9rem; }
 .masthead nav a { display: inline-flex; align-items: center; min-height: 40px; padding-inline: .25rem; }
-.masthead nav a[aria-current], .masthead nav a:hover { text-decoration: underline; text-decoration-thickness: 1px; background: var(--accent); }
+.masthead nav a[aria-current] { background-color: var(--accent); }
 
 .photo-wall {
   display: grid;
@@ -163,9 +161,6 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
   align-items: baseline;
   gap: .38em;
 }
-.photo-data-context .photo-country-link { text-decoration-color: var(--focus); }
-.photo-data-context .photo-country-link:hover { background: var(--accent-soft); }
-
 .map-link {
   display: grid;
   place-items: center;
@@ -177,7 +172,6 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
   border: 1px solid var(--line);
   border-radius: 50%;
 }
-.map-link:hover { background: var(--accent); }
 .globe-symbol {
   position: relative;
   display: block;

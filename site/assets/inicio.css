@@ -1,10 +1,9 @@
-@import url("./cores.css");
+@import url("./cores.css?v=20261120-6");
 
 :root { font: 16px/1.45 Arial, Helvetica, sans-serif; }
 
 * { box-sizing: border-box; }
 body { margin: 0; }
-a { color: inherit; text-underline-offset: .24em; }
 a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
 .edition { width: min(94%, 1510px); margin-inline: auto; }
 .front .edition { padding-block: clamp(1rem, 4vw, 3.1rem); }
@@ -29,31 +28,21 @@ a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
   gap: .45rem;
 }
 .area {
-  position: relative;
-  isolation: isolate;
   display: flex;
   align-items: end;
   min-height: clamp(320px, 44vw, 650px);
   padding: clamp(.85rem, 2vw, 2rem);
-  overflow: hidden;
-  text-decoration: none;
 }
 .area span { font: 400 clamp(2.5rem, 5vw, 6.5rem)/.88 var(--serif); letter-spacing: -.05em; }
-.area:hover span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .14em; }
 .area-texto { background: var(--background); border: 1px solid var(--line); }
-.area-texto:hover { background: var(--accent-soft); }
 .area-musica { background: var(--accent); }
-.area-visual { background: var(--accent-soft); padding: 0; }
-.area-visual span { background: var(--accent); padding: .18em .31em .25em; }
-.area-visual img {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
+.area-visual { background: var(--accent-soft); }
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .area:hover { scale: none; }
+  .area span { transform-origin: left bottom; transition: scale 180ms ease; }
+  .area:hover span { scale: 1.045; }
 }
-.area-visual img { object-fit: cover; object-position: center 42%; transition: transform .4s ease; }
-@media (hover: hover) { .area-visual:hover img { transform: scale(1.035); } }
 
 .section-header {
   display: flex;
@@ -64,11 +53,9 @@ a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
   padding: 1rem 0;
   border-bottom: 1px solid var(--line);
 }
-.section-header > a { font: 400 1.6rem/1 var(--serif); text-decoration: none; letter-spacing: -.035em; }
+.section-header > a { font: 400 1.6rem/1 var(--serif); letter-spacing: -.035em; }
 .section-header nav { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .925rem; }
-.section-header nav a { text-decoration: none; }
-.section-header nav a:hover, .section-header nav a[aria-current=page] { text-decoration: underline; text-decoration-color: var(--focus); }
-.section-header nav a[aria-current=page] { background: var(--accent); }
+.section-header nav a[aria-current=page] { background-color: var(--accent); }
 .section-content { padding-block: clamp(2.6rem, 9vw, 9rem); }
 .section-content h1 { margin: 0 0 .6rem; font: 400 clamp(3.5rem, 11vw, 10rem)/.88 var(--serif); letter-spacing: -.055em; }
 .section-content p { color: var(--muted); }
@@ -76,7 +63,5 @@ a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
 @media (max-width: 680px) {
   .areas { grid-template-columns: 1fr; }
   .area { min-height: 175px; }
-  .area-visual { min-height: 310px; }
   .cover { min-height: 122px; }
 }
-@media (prefers-reduced-motion: reduce) { .area-visual img { transition: none; } }

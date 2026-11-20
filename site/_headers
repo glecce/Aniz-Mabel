@@ -6,6 +6,8 @@
   Cache-Control: private, no-cache
 /assets/cores.css
   Cache-Control: private, no-cache
+/assets/inicio.css
+  Cache-Control: private, no-cache
 /visual/mapa/mapa.css
   Cache-Control: private, no-cache
 /visual/mapa/mapa.js
