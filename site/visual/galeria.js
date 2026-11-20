@@ -1,4 +1,4 @@
-import { countryAddress, countryLabel, getCountry, loadPhotos } from './mapa/paises.js?v=20261120-5';
+import { countryAddress, countryLabel, getCountry, loadPhotos } from '../map/countries.js?v=20261120-11';
 
 const wall = document.querySelector('.photo-wall');
 const status = document.querySelector('.wall-status');
@@ -110,13 +110,14 @@ viewer.addEventListener('close', () => {
   image.removeAttribute('src');
 });
 
-const country = isCountryGallery ? getCountry(new URLSearchParams(location.search).get('country')) : null;
-if (!isCountryGallery || country) {
-  if (isCountryGallery) wall.closest('.country-photos').hidden = false;
+export function renderGallery(items) {
+  photos = items;
+  wall.replaceChildren(...photos.map(makeTile));
+}
+
+if (!isCountryGallery) {
   try {
-    const catalog = await loadPhotos();
-    photos = country ? catalog.filter(photo => getCountry(photo.country) === country) : catalog;
-    wall.replaceChildren(...photos.map(makeTile));
+    renderGallery(await loadPhotos());
     if (!photos.length) status.textContent = 'Photographs coming soon.';
   } catch (error) {
     status.textContent = 'Could not load the gallery.';

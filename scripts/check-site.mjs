@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { catalogFile, checkAsset, checkCatalog, loadJSON, siteAddress, siteRoot } from './catalogo.mjs';
-import { getCountry } from '../site/visual/mapa/paises.js';
+import { getCountry, themes } from '../site/map/countries.js';
 
-const routes = ['', 'writing/', 'music/', 'visual/', 'visual/videos/', 'visual/collage/', 'visual/paint/', 'visual/jobs/', 'visual/map/'];
+const routes = ['', 'writing/', 'music/', 'visual/', 'visual/videos/', 'visual/collage/', 'visual/paint/', 'visual/jobs/', 'map/'];
 
 try {
   for (const route of routes) {
@@ -21,6 +21,7 @@ try {
     if (!Array.isArray(projects[section])) throw new Error(`Falta a lista de ${section}.`);
     for (const project of projects[section]) {
       if (!project.title) throw new Error(`Falta o título de um projeto em ${section}.`);
+      if (project.country && !getCountry(project.country)) throw new Error(`País inválido em ${project.title}.`);
       if (project.type !== undefined && !['image', 'video'].includes(project.type)) {
         throw new Error(`Use type image ou video em ${section}.`);
       }
@@ -28,8 +29,8 @@ try {
       if (project.poster) checkAsset(project.poster);
     }
   }
-  const countryContent = loadJSON(new URL('visual/mapa/conteudos.json', siteRoot));
-  for (const section of ['video', 'musica', 'texto']) {
+  const countryContent = loadJSON(new URL('map/content.json', siteRoot));
+  for (const section of themes.slice(1)) {
     if (!Array.isArray(countryContent[section])) throw new Error(`Faltam os conteúdos por país de ${section}.`);
     for (const item of countryContent[section]) {
       if (!getCountry(item.country) || !item.title || !/^(\/(?![\/\\])|https:\/\/)/i.test(item.href)) {

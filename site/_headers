@@ -8,13 +8,17 @@
   Cache-Control: private, no-cache
 /assets/inicio.css
   Cache-Control: private, no-cache
-/visual/mapa/mapa.css
+/map/map.css
   Cache-Control: private, no-cache
-/visual/mapa/mapa.js
+/map/globe.js
   Cache-Control: private, no-cache
-/visual/mapa/pais.js
+/map/country.js
   Cache-Control: private, no-cache
-/visual/mapa/paises.js
+/map/countries.js
   Cache-Control: private, no-cache
-/visual/mapa/paises-dados.js
+/map/country-data.js
+  Cache-Control: private, no-cache
+/map/archive.js
+  Cache-Control: private, no-cache
+/map/legacy-country.js
   Cache-Control: private, no-cache

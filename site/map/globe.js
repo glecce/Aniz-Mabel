@@ -1,5 +1,6 @@
 import { geoContains, geoDistance, geoGraticule10, geoOrthographic, geoPath } from './geo-bundle.mjs';
-import { countries, countryAddress, getCountry, loadPhotos } from './paises.js?v=20261120-5';
+import { loadArchive } from './archive.js?v=20261120-11';
+import { countries, countryAddress, getCountry, loadPhotos } from './countries.js?v=20261120-11';
 
 const canvas = document.querySelector('.world-globe');
 const context = canvas.getContext('2d');
@@ -8,7 +9,7 @@ const initialRotation = [-8, -34];
 const projection = geoOrthographic().clipAngle(90).precision(.45);
 const path = geoPath(projection, context);
 const graticule = geoGraticule10();
-const photographed = new Set();
+const countriesWithWork = new Set();
 let shapes = [];
 let dots = [];
 let rotation = [...initialRotation];
@@ -54,7 +55,7 @@ function draw() {
   renderPath({type: 'Sphere'}, ocean, '#7897ad');
   renderPath(graticule, null, '#7897ad55', .55);
   for (const {country, geometry} of shapes) {
-    const fill = country === hover ? '#78aed1' : photographed.has(country) ? '#a6cee6' : '#f6f2e7';
+    const fill = country === hover ? '#78aed1' : countriesWithWork.has(country) ? '#a6cee6' : '#f6f2e7';
     renderPath(geometry, fill, '#8496a0', .55);
   }
 
@@ -63,7 +64,7 @@ function draw() {
     .map(country => ({country, xy: projection(country.point)}));
   for (const {country, xy} of dots) {
     context.beginPath();
-    context.arc(...xy, country === hover || photographed.has(country) ? 5 : 2.2, 0, 2 * Math.PI);
+    context.arc(...xy, country === hover || countriesWithWork.has(country) ? 5 : 2.2, 0, 2 * Math.PI);
     context.fillStyle = country === hover ? '#172f41' : '#215a7b';
     context.fill();
     context.strokeStyle = '#f7f4ed';
@@ -177,7 +178,7 @@ function startGlobe() {
 
 async function loadGlobe() {
   if (!context) throw new Error('Canvas unavailable.');
-  const response = await fetch(new URL('fronteiras.json', import.meta.url));
+  const response = await fetch(new URL('boundaries.json', import.meta.url));
   if (!response.ok) throw new Error('Map unavailable.');
   const borders = await response.json();
   shapes = borders.map(([code, coordinates]) => ({
@@ -187,11 +188,15 @@ async function loadGlobe() {
   startGlobe();
 }
 
-async function highlightPhotographedCountries() {
-  const photos = await loadPhotos();
-  for (const photo of photos) {
-    const country = getCountry(photo.country);
-    if (country) photographed.add(country);
+async function highlightCountriesWithWork() {
+  const [photos, archive] = await Promise.allSettled([loadPhotos(), loadArchive()]);
+  const work = [
+    ...(photos.status === 'fulfilled' ? photos.value : []),
+    ...(archive.status === 'fulfilled' ? Object.values(archive.value).flat() : []),
+  ];
+  for (const entry of work) {
+    const country = getCountry(entry.country);
+    if (country) countriesWithWork.add(country);
   }
   if (shapes.length) requestDraw();
 }
@@ -203,5 +208,5 @@ await Promise.all([
     canvas.hidden = true;
     console.error(error);
   }),
-  highlightPhotographedCountries().catch(error => console.error(error)),
+  highlightCountriesWithWork(),
 ]);

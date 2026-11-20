@@ -14,6 +14,11 @@
 /visual/colagem/ /visual/collage/ 301
 /visual/pinturas-desenhos /visual/paint/ 301
 /visual/pinturas-desenhos/ /visual/paint/ 301
-/visual/mapa /visual/map/ 301
-/visual/mapa/ /visual/map/ 301
-/visual/mapa/fontes.txt /visual/map/credits.txt 301
+/visual/map /map/ 301
+/visual/map/ /map/ 301
+/visual/mapa /map/ 301
+/visual/mapa/ /map/ 301
+/visual/map/credits.txt /map/credits.txt 301
+/visual/mapa/fontes.txt /map/credits.txt 301
+/visual/mapa/paises.js /map/countries.js 302
+/visual/mapa/TwemojiCountryFlags.woff2 /map/TwemojiCountryFlags.woff2 301

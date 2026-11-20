@@ -4,15 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>country archive — Aniz Mabel</title>
-  <link rel="stylesheet" href="/assets/cores.css?v=20261120-7">
-  <script type="module">
-    import { countryAddress, getCountry } from '/visual/mapa/paises.js?v=20261120-5';
-
-    const country = getCountry(new URLSearchParams(location.search).get('pais'));
-    location.replace(country ? countryAddress(country) : '/visual/map/');
-  </script>
+  <link rel="stylesheet" href="/assets/cores.css?v=20261120-10">
+  <script type="module" src="/map/legacy-country.js?v=20261120-11"></script>
 </head>
 <body>
-  <a href="/visual/map/">open the world map</a>
+  <a href="/map/">open the world map</a>
 </body>
 </html>

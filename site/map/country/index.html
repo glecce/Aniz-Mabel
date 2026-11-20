@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>country — Aniz Mabel</title>
+  <link rel="stylesheet" href="/visual/estilo.css?v=20261120-11">
+  <link rel="stylesheet" href="/map/map.css?v=20261120-11">
+  <script type="module" src="/map/country.js?v=20261120-11"></script>
+</head>
+<body>
+  <header class="atlas-header">
+    <a href="/map/">← World Map</a>
+    <a class="atlas-brand brand-name" href="/">Aniz Mabel</a>
+  </header>
+  <main class="country-page">
+    <div class="country-intro">
+      <h1 class="country-title">Country</h1>
+      <noscript><p>Enable JavaScript to view the country archive.</p></noscript>
+    </div>
+    <div class="country-filters" hidden>
+      <form class="country-picker" action="/map/country/">
+        <label for="country-picker">Country</label>
+        <select id="country-picker" name="country" required></select>
+        <input type="hidden" name="theme" disabled>
+        <button type="submit">Open</button>
+      </form>
+      <nav class="country-themes" aria-label="Filter by theme" hidden>
+        <a data-theme="all">All</a>
+        <a data-theme="visual">Visual</a>
+        <a data-theme="writing">Writing</a>
+        <a data-theme="music">Music</a>
+      </nav>
+    </div>
+    <section class="country-photos" aria-label="Photographs" hidden>
+      <div class="photo-wall" data-country-gallery aria-label="Photographs from this country"></div>
+    </section>
+    <div class="country-content"></div>
+    <p class="country-status" role="status"></p>
+  </main>
+  <dialog class="photo-viewer" aria-label="Enlarged photograph">
+    <header class="viewer-bar">
+      <p class="viewer-counter" aria-live="polite"></p>
+      <form method="dialog"><button type="submit" class="viewer-close" autofocus>Close <span aria-hidden="true">×</span></button></form>
+    </header>
+    <div class="viewer-content">
+      <div class="viewer-frame">
+        <button type="button" class="viewer-nav viewer-prev" aria-label="Previous photo">‹</button>
+        <img class="viewer-image" alt="">
+        <button type="button" class="viewer-nav viewer-next" aria-label="Next photo">›</button>
+      </div>
+      <aside class="viewer-details" aria-label="Photo details">
+        <div class="photo-data-context" role="group" aria-label="Location and date"></div>
+        <dl class="photo-data photo-data-camera" aria-label="Camera and exposure"></dl>
+      </aside>
+    </div>
+  </dialog>
+</body>
+</html>

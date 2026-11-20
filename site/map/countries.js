@@ -1,4 +1,6 @@
-import { regions } from './paises-dados.js?v=20261120-5';
+import { regions } from './country-data.js?v=20261120-11';
+
+export const themes = ['all', 'visual', 'writing', 'music'];
 
 const englishNames = new Intl.DisplayNames('en', { type: 'region', fallback: 'none' });
 export const countries = regions.map(([code, name, longitude, latitude, dot]) => ({
@@ -18,8 +20,14 @@ export function getCountry(value) {
   return byCode.get(value.trim().toUpperCase()) ?? byName.get(normalize(value));
 }
 
-export function countryAddress(country) {
-  return '/visual/map/country/?country=' + country.code;
+export function getTheme(value) {
+  return themes.includes(value) ? value : 'all';
+}
+
+export function countryAddress(country, theme = 'all') {
+  const params = new URLSearchParams({ country: country.code });
+  if (getTheme(theme) !== 'all') params.set('theme', theme);
+  return '/map/country/?' + params.toString();
 }
 
 export function countryFlag(country) {

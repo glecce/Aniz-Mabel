@@ -15,7 +15,7 @@ O endereço principal é [anizmabel.com](https://anizmabel.com/). A entrada reú
 | `site/visual/galeria.js` | Carregamento das fotos, dados técnicos e navegação entre imagens |
 | `site/visual/fotos.json` | Ordem, títulos, endereços, data, localização, câmera e exposição das fotos |
 | `site/visual/trabalhos.json` | Conteúdo de vídeos, colagens, pinturas e desenhos e da página Jobs |
-| `site/visual/mapa/conteudos.json` | Vídeos, músicas e textos dos arquivos por país |
+| `site/map/content.json` | Links adicionais de artes visuais, escrita e música por país |
 | `site/assets/fotos/` | Miniaturas e versões ampliadas que o próprio site serve |
 | `site/_redirects` | Encaminha os endereços antigos para `/visual/` no Cloudflare Pages |
 
@@ -45,8 +45,8 @@ Para incluir uma obra em [Jobs](https://anizmabel.com/visual/jobs/), adicione um
 
 ## Arquivos por país
 
-O [mapa-múndi](https://anizmabel.com/visual/map/) usa o campo `country` de `site/visual/fotos.json`. Por exemplo, uma foto com `"country": "Portugal"` aparece na galeria principal e no [arquivo de Portugal](https://anizmabel.com/visual/map/country/?country=PT).
+O [mapa-múndi](https://anizmabel.com/map/) reúne visual, escrita e música por país. Uma foto com `"country": "Portugal"` em `site/visual/fotos.json` aparece na galeria e no [arquivo de Portugal](https://anizmabel.com/map/country/?country=PT). Para incluir um projeto de vídeo, colagem, pintura ou Jobs, adicione o campo `country` à sua entrada em `site/visual/trabalhos.json`.
 
-Para ligar uma publicação a um país, acrescente um item à lista `video`, `musica` ou `texto` de `site/visual/mapa/conteudos.json`. Informe `country`, `title` e `href`. Em `country`, use o nome em inglês ou o código de duas letras. Em `href`, use o endereço da publicação, como `/writing/` ou um link público HTTPS.
+Para ligar uma publicação ao mapa, acrescente um item à lista `visual`, `writing` ou `music` de `site/map/content.json`. Informe `country`, `title` e `href`. Em `country`, use o nome em inglês ou o código de duas letras. Em `href`, use o endereço da publicação, como `/writing/` ou um link público HTTPS. O link de um tema pode ser compartilhado, como [escrita em Portugal](https://anizmabel.com/map/country/?country=PT&theme=writing).
 
 Escreva os títulos, descrições e nomes de lugares em inglês para novas publicações.

@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap');
 
 :root {
-  --display-font: 'Henny Penny', Georgia, serif;
   --gap: 3px;
   --bar: 76px;
 }
+.masthead, .project-page { --display-font: 'Henny Penny', Georgia, serif; }
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; font-size: 1.125rem; line-height: 1.35; }
 button { font: inherit; color: inherit; text-transform: inherit; cursor: pointer; }
@@ -21,15 +21,16 @@ button { font: inherit; color: inherit; text-transform: inherit; cursor: pointer
   padding: .5rem clamp(.75rem, 2vw, 2rem);
   border-bottom: 1px solid var(--line);
 }
-.masthead h1, .atlas-brand {
+.masthead h1 {
+  grid-column: 2;
+  margin: 0;
   font: 400 clamp(1.375rem, 3.15vw, 2.375rem)/1.55 var(--display-font);
   white-space: nowrap;
 }
-.masthead h1 { grid-column: 2; margin: 0; }
 .masthead nav { display: flex; justify-content: end; align-items: center; flex-wrap: wrap; min-width: 0; column-gap: clamp(.65rem, 1.35vw, 1.3rem); font-size: 1.075rem; }
 .masthead nav a { display: inline-flex; align-items: center; min-height: 40px; padding-inline: .25rem; }
 .masthead nav a[aria-current] { color: var(--focus); }
-.masthead a:is(:hover, :focus-visible), .atlas-header a:is(:hover, :focus-visible) { background-color: transparent; }
+.masthead a:is(:hover, :focus-visible) { background-color: transparent; }
 
 .photo-wall {
   display: grid;
@@ -151,7 +152,7 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
 
 @font-face {
   font-family: 'Twemoji Country Flags';
-  src: url('/visual/mapa/TwemojiCountryFlags.woff2') format('woff2');
+  src: url('/map/TwemojiCountryFlags.woff2') format('woff2');
   unicode-range: U+1F1E6-1F1FF;
   font-display: swap;
 }

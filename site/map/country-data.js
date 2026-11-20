@@ -1,4 +1,4 @@
-// Natural Earth 5.1.2 data. See /visual/map/credits.txt.
+// Natural Earth 5.1.2 data. See /map/credits.txt.
 export const regions = [
   ["AE","Emirados Árabes Unidos",54.547,23.466],
   ["AF","Afeganistão",66.497,34.164],
