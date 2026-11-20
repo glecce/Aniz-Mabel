@@ -9,7 +9,6 @@
 }
 
 .atlas-header a { width: fit-content; }
-.atlas-brand { font: 400 clamp(1.4rem, 3vw, 2.35rem)/1 var(--display-font); }
 
 .country-page {
   width: min(100% - clamp(2rem, 9vw, 10rem), 88rem);
@@ -73,5 +72,5 @@
 }
 
 @media (max-width: 420px) {
-  .atlas-header { grid-template-columns: 1fr auto; }
+  .atlas-header { grid-template-columns: minmax(0, 1fr) auto; }
 }

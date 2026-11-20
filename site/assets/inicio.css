@@ -31,11 +31,10 @@ a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
   align-items: end;
   min-height: clamp(320px, 44vw, 650px);
   padding: clamp(.85rem, 2vw, 2rem);
+  border: 1px solid var(--line);
 }
 .area span { font: 600 clamp(2.5rem, 5vw, 6.5rem)/1 var(--display-font); }
-.area-texto { background: var(--background); border: 1px solid var(--line); }
-.area-musica { background: var(--accent); }
-.area-visual { background: var(--accent-soft); }
+.area:is(:hover, :focus-visible) { background-color: transparent; }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .area:hover { scale: none; }

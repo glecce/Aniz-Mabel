@@ -4,7 +4,7 @@
 :root {
   --display-font: 'Henny Penny', Georgia, serif;
   --gap: 3px;
-  --bar: 65px;
+  --bar: 76px;
 }
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; font-size: 1.125rem; line-height: 1.35; }
@@ -17,14 +17,19 @@ button { font: inherit; color: inherit; text-transform: inherit; cursor: pointer
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  gap: .25rem 1rem;
-  padding: .4rem clamp(.75rem, 2vw, 2rem);
+  gap: .25rem clamp(.5rem, 2vw, 1rem);
+  padding: .5rem clamp(.75rem, 2vw, 2rem);
   border-bottom: 1px solid var(--line);
 }
-.masthead h1 { grid-column: 2; margin: 0; font: 400 clamp(1.65rem, 2.4vw, 2.5rem)/1 var(--display-font); }
-.masthead nav { display: flex; justify-content: end; align-items: center; flex-wrap: wrap; column-gap: clamp(.65rem, 1.35vw, 1.3rem); font-size: 1.075rem; }
+.masthead h1, .atlas-brand {
+  font: 400 clamp(1.375rem, 3.15vw, 2.375rem)/1.55 var(--display-font);
+  white-space: nowrap;
+}
+.masthead h1 { grid-column: 2; margin: 0; }
+.masthead nav { display: flex; justify-content: end; align-items: center; flex-wrap: wrap; min-width: 0; column-gap: clamp(.65rem, 1.35vw, 1.3rem); font-size: 1.075rem; }
 .masthead nav a { display: inline-flex; align-items: center; min-height: 40px; padding-inline: .25rem; }
-.masthead nav a[aria-current] { background-color: var(--accent); }
+.masthead nav a[aria-current] { color: var(--focus); }
+.masthead a:is(:hover, :focus-visible), .atlas-header a:is(:hover, :focus-visible) { background-color: transparent; }
 
 .photo-wall {
   display: grid;
@@ -68,12 +73,12 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
 }
 .viewer-counter { margin: 0; color: var(--muted); font-size: 1rem; }
 .viewer-close, .viewer-nav {
-  border: 1px solid var(--focus);
-  background: var(--accent);
+  border: 1px solid var(--line);
+  background: transparent;
   min-height: 44px;
 }
 .viewer-close { padding: .35rem .75rem; }
-.viewer-close:hover, .viewer-nav:hover { background: var(--accent-soft); }
+.viewer-close:hover, .viewer-nav:hover { color: var(--focus); border-color: var(--focus); }
 .viewer-content {
   display: grid;
   grid-template-rows: minmax(170px, 1fr) auto;
