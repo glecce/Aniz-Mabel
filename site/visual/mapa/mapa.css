@@ -9,7 +9,7 @@
 }
 
 .atlas-header a { width: fit-content; }
-.atlas-brand { font: 600 clamp(1.4rem, 3vw, 2.35rem)/1 var(--display-font); }
+.atlas-brand { font: 400 clamp(1.4rem, 3vw, 2.35rem)/1 var(--display-font); }
 
 .country-page {
   width: min(100% - clamp(2rem, 9vw, 10rem), 88rem);
@@ -20,7 +20,7 @@
 
 .country-intro h1 {
   margin: 0;
-  font: 600 clamp(2.8rem, 8vw, 7.5rem)/1 var(--display-font);
+  font: 400 clamp(2.8rem, 8vw, 7.5rem)/1 var(--display-font);
   overflow-wrap: anywhere;
 }
 
@@ -51,7 +51,7 @@
 
 .country-page h2 {
   margin: 0 0 .8rem;
-  font: 600 clamp(1.5rem, 2.5vw, 2.25rem)/1.1 var(--display-font);
+  font: 400 clamp(1.5rem, 2.5vw, 2.25rem)/1.1 var(--display-font);
 }
 .country-title { display: flex; align-items: center; gap: .25em; }
 .country-title .flag-icon { font-size: .56em; }
