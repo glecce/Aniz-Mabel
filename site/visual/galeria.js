@@ -4,11 +4,11 @@ const wall = document.querySelector('.photo-wall');
 const status = document.querySelector('.wall-status');
 const viewer = document.querySelector('.photo-viewer');
 const image = document.querySelector('.viewer-image');
-const title = document.querySelector('.viewer-title');
 const counter = document.querySelector('.viewer-counter');
 const contextData = document.querySelector('.photo-data-context');
 const cameraData = document.querySelector('.photo-data-camera');
 const isCountryGallery = wall.hasAttribute('data-country-gallery');
+const englishMonth = new Intl.DateTimeFormat('en', { month: 'long', timeZone: 'UTC' });
 let photos = [];
 let active = -1;
 let imageVersion = 0;
@@ -48,7 +48,7 @@ function makeRow(label, value) {
   const name = document.createElement('dt');
   const content = document.createElement('dd');
   name.textContent = label;
-  content.append(value || 'Não registrado');
+  content.textContent = value || 'Não registrado';
   content.toggleAttribute('data-missing', !value);
   row.append(name, content);
   return row;
@@ -66,20 +66,29 @@ function photoCountry(value) {
   return link;
 }
 
+function photoDate(date) {
+  if (!date) return null;
+  const [year, , day] = date.split('-');
+  const time = document.createElement('time');
+  time.dateTime = date;
+  time.lang = 'en';
+  time.textContent = [day, englishMonth.format(new Date(date)), year].join('/');
+  return time;
+}
+
 function showPhoto(index) {
   active = (index + photos.length) % photos.length;
   const photo = photos[active];
   const version = ++imageVersion;
   image.src = photo.src;
   image.alt = photo.alt;
-  title.textContent = photo.title;
   counter.textContent = `${active + 1} / ${photos.length}`;
-  const date = photo.date?.split('-').reverse().join('/');
-  contextData.replaceChildren(
-    makeRow('Cidade', photo.city),
-    makeRow('País', photoCountry(photo.country)),
-    makeRow('Data', date),
-  );
+  const context = [photo.city, photoCountry(photo.country), photoDate(photo.date)].filter(Boolean);
+  contextData.replaceChildren(...context.map(value => {
+    const item = document.createElement('span');
+    item.append(value);
+    return item;
+  }));
   cameraData.replaceChildren(...cameraProperties.map(([label, key]) => makeRow(label, photo[key])));
 
   if (photo.full && photo.full !== photo.src) {
