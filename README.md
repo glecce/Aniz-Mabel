@@ -15,6 +15,7 @@ O endereço principal é [anizmabel.com](https://anizmabel.com/). A entrada reú
 | `site/visual/galeria.js` | Carregamento das fotos, dados técnicos e navegação entre imagens |
 | `site/visual/fotos.json` | Ordem, títulos, endereços, data, localização, câmera e exposição das fotos |
 | `site/visual/trabalhos.json` | Conteúdo de vídeos, colagens, pinturas e desenhos e da página Jobs |
+| `site/visual/mapa/conteudos.json` | Vídeos, músicas e textos dos arquivos por país |
 | `site/assets/fotos/` | Miniaturas e versões ampliadas que o próprio site serve |
 | `site/_redirects` | Encaminha os endereços antigos para `/visual/` no Cloudflare Pages |
 
@@ -41,3 +42,9 @@ npm run foto -- fotos/tejo.webp "Fim de tarde no Tejo" --ampliada fotos/tejo-gra
 No catálogo de trabalhos, use `title` e `src`. Também é possível informar `description`, `alt` para uma obra em imagem ou `poster` para um vídeo. No caso de vídeo, o endereço deve apontar para o arquivo reproduzível, como um MP4.
 
 Para incluir uma obra em [Jobs](https://anizmabel.com/visual/jobs/), adicione um item à lista `"jobs"` de `site/visual/trabalhos.json`. Use o endereço HTTPS público do R2 em `src`. As entradas são exibidas na ordem do arquivo. Se o endereço for de um vídeo, acrescente `"type": "video"`.
+
+## Arquivos por país
+
+O [mapa-múndi](https://anizmabel.com/visual/mapa/) usa o campo `country` de `site/visual/fotos.json`. Por exemplo, uma foto com `"country": "Portugal"` aparece na galeria principal e no [arquivo de Portugal](https://anizmabel.com/visual/mapa/pais/?pais=PT).
+
+Para ligar uma publicação a um país, acrescente um item à lista `video`, `musica` ou `texto` de `site/visual/mapa/conteudos.json`. Informe `country`, `title` e `href`. Em `country`, use o nome em português ou o código de duas letras. Em `href`, use o endereço da publicação, como `/texto/` ou um link público HTTPS.

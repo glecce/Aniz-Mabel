@@ -133,3 +133,68 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
   .masthead nav { font-size: .86rem; column-gap: .75rem; }
 }
 @media (prefers-reduced-motion: reduce) { .wall-photo img { transition: none; } }
+
+@font-face {
+  font-family: 'Twemoji Country Flags';
+  src: url('/visual/mapa/TwemojiCountryFlags.woff2') format('woff2');
+  unicode-range: U+1F1E6-1F1FF;
+  font-display: swap;
+}
+
+.flag-icon {
+  font-family: 'Twemoji Country Flags', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  font-size: 1.12em;
+  line-height: 1;
+  flex: none;
+}
+.country-label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .38em;
+}
+.photo-data .photo-country-link { text-decoration-color: var(--focus); }
+.photo-data .photo-country-link:hover { background: var(--accent-soft); }
+
+.map-link {
+  display: grid;
+  place-items: center;
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+.map-link:hover { background: var(--accent); }
+.globe-symbol {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+.globe-symbol::before {
+  content: '';
+  position: absolute;
+  inset: -1px 5px;
+  border-inline: 1.5px solid currentColor;
+  border-radius: 50%;
+}
+.globe-symbol::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - .75px);
+  inset-inline: 0;
+  border-top: 1.5px solid currentColor;
+}
+
+@media (max-width: 1100px) {
+  .gallery-masthead { grid-template-columns: auto auto 1fr; }
+  .gallery-masthead h1 { grid-column: 2; }
+}
+@media (max-width: 760px) {
+  .gallery-masthead { grid-template-columns: 44px minmax(0, 1fr) 44px; }
+  .gallery-masthead nav { grid-column: 1 / -1; }
+}

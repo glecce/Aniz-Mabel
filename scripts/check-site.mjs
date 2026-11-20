@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { catalogFile, checkAsset, checkCatalog, loadJSON, siteAddress, siteRoot } from './catalogo.mjs';
+import { getCountry } from '../site/visual/mapa/paises.js';
 
-const routes = ['', 'texto/', 'musica/', 'visual/', 'visual/video/', 'visual/colagem/', 'visual/pinturas-desenhos/', 'visual/jobs/'];
+const routes = ['', 'texto/', 'musica/', 'visual/', 'visual/video/', 'visual/colagem/', 'visual/pinturas-desenhos/', 'visual/jobs/', 'visual/mapa/'];
 
 try {
   for (const route of routes) {
@@ -24,6 +25,15 @@ try {
       }
       checkAsset(project.src);
       if (project.poster) checkAsset(project.poster);
+    }
+  }
+  const countryContent = loadJSON(new URL('visual/mapa/conteudos.json', siteRoot));
+  for (const section of ['video', 'musica', 'texto']) {
+    if (!Array.isArray(countryContent[section])) throw new Error(`Faltam os conteúdos por país de ${section}.`);
+    for (const item of countryContent[section]) {
+      if (!getCountry(item.country) || !item.title || !/^(\/(?![\/\\])|https:\/\/)/i.test(item.href)) {
+        throw new Error(`Conteúdo de ${section}: informe um país válido, título e endereço público.`);
+      }
     }
   }
   console.log(`Verificados: ${routes.length} endereços, ${photos.length} fotos.`);

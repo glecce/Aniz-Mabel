@@ -1,3 +1,5 @@
+import { countryAddress, countryLabel, getCountry, loadPhotos } from './mapa/paises.js';
+
 const wall = document.querySelector('.photo-wall');
 const status = document.querySelector('.wall-status');
 const viewer = document.querySelector('.photo-viewer');
@@ -6,6 +8,7 @@ const title = document.querySelector('.viewer-title');
 const counter = document.querySelector('.viewer-counter');
 const contextData = document.querySelector('.photo-data-context');
 const cameraData = document.querySelector('.photo-data-camera');
+const isCountryGallery = wall.hasAttribute('data-country-gallery');
 let photos = [];
 let active = -1;
 let imageVersion = 0;
@@ -45,10 +48,22 @@ function makeRow(label, value) {
   const name = document.createElement('dt');
   const content = document.createElement('dd');
   name.textContent = label;
-  content.textContent = value || 'Não registrado';
+  content.append(value || 'Não registrado');
   content.toggleAttribute('data-missing', !value);
   row.append(name, content);
   return row;
+}
+
+function photoCountry(value) {
+  const country = getCountry(value);
+  if (!country) return value;
+  const label = countryLabel(country);
+  if (isCountryGallery) return label;
+  const link = document.createElement('a');
+  link.className = 'photo-country-link';
+  link.href = countryAddress(country);
+  link.append(label);
+  return link;
 }
 
 function showPhoto(index) {
@@ -62,7 +77,7 @@ function showPhoto(index) {
   const date = photo.date?.split('-').reverse().join('/');
   contextData.replaceChildren(
     makeRow('Cidade', photo.city),
-    makeRow('País', photo.country),
+    makeRow('País', photoCountry(photo.country)),
     makeRow('Data', date),
   );
   cameraData.replaceChildren(...cameraProperties.map(([label, key]) => makeRow(label, photo[key])));
@@ -86,13 +101,16 @@ viewer.addEventListener('close', () => {
   image.removeAttribute('src');
 });
 
-try {
-  const response = await fetch(new URL('fotos.json', import.meta.url));
-  if (!response.ok) throw new Error('Catálogo indisponível.');
-  photos = await response.json();
-  wall.replaceChildren(...photos.map(makeTile));
-  if (!photos.length) status.textContent = 'As fotografias serão adicionadas em breve.';
-} catch (error) {
-  status.textContent = 'Não foi possível carregar a galeria.';
-  console.error(error);
+const country = isCountryGallery ? getCountry(new URLSearchParams(location.search).get('pais')) : null;
+if (!isCountryGallery || country) {
+  if (isCountryGallery) wall.closest('.country-photos').hidden = false;
+  try {
+    const catalog = await loadPhotos();
+    photos = country ? catalog.filter(photo => getCountry(photo.country) === country) : catalog;
+    wall.replaceChildren(...photos.map(makeTile));
+    if (!photos.length) status.textContent = 'As fotografias serão adicionadas em breve.';
+  } catch (error) {
+    status.textContent = 'Não foi possível carregar a galeria.';
+    console.error(error);
+  }
 }

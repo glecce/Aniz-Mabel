@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mapa-múndi — Aniz Mabel</title>
+  <link rel="canonical" href="https://anizmabel.com/visual/mapa/">
+  <link rel="stylesheet" href="/visual/estilo.css?v=20261120-2">
+  <link rel="stylesheet" href="/visual/mapa/mapa.css">
+  <script type="module" src="/visual/mapa/mapa.js"></script>
+</head>
+<body>
+  <header class="atlas-header">
+    <a href="/visual/">← Galeria</a>
+    <a class="atlas-brand" href="/">Aniz Mabel</a>
+  </header>
+  <main class="atlas">
+    <div class="atlas-intro">
+      <h1>Mapa-múndi</h1>
+      <p id="globe-help">Arraste o globo para girar. Clique num país para abrir seu arquivo.</p>
+    </div>
+    <div class="atlas-layout">
+      <div class="globe-stage">
+        <canvas class="world-globe" aria-label="Globo interativo. Use as setas para girar." aria-describedby="globe-help" tabindex="0"></canvas>
+        <div class="globe-bar">
+          <p class="globe-status" role="status">Carregando mapa…</p>
+          <button class="globe-reset" type="button" hidden>Recentrar</button>
+        </div>
+      </div>
+      <aside class="atlas-countries" aria-label="Países">
+        <h2>Países fotografados</h2>
+        <ul class="country-list"></ul>
+        <form class="country-form" hidden>
+          <label for="country-select">Todos os países do mapa</label>
+          <select id="country-select" name="pais" required>
+            <option value="">Escolha um país</option>
+          </select>
+          <button type="submit">Abrir país</button>
+        </form>
+      </aside>
+    </div>
+    <noscript><p>Ative o JavaScript para explorar o mapa.</p></noscript>
+    <footer class="atlas-footer"><a href="/visual/mapa/fontes.txt">Fontes do mapa e das bandeiras</a></footer>
+  </main>
+</body>
+</html>

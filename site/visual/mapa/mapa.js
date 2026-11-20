@@ -1,0 +1,227 @@
+import { geoContains, geoDistance, geoGraticule10, geoOrthographic, geoPath } from './geo-bundle.mjs';
+import { countries, countryAddress, countryLabel, getCountry, loadPhotos } from './paises.js';
+
+const canvas = document.querySelector('.world-globe');
+const context = canvas.getContext('2d');
+const status = document.querySelector('.globe-status');
+const reset = document.querySelector('.globe-reset');
+const photoList = document.querySelector('.country-list');
+const form = document.querySelector('.country-form');
+const select = form.querySelector('select');
+const initialRotation = [-8, -34];
+const projection = geoOrthographic().clipAngle(90).precision(.45);
+const path = geoPath(projection, context);
+const graticule = geoGraticule10();
+const counts = new Map();
+const sortedCountries = [...countries].sort((a, b) => a.name.localeCompare(b.name, 'pt-BR'));
+let shapes = [];
+let dots = [];
+let rotation = [...initialRotation];
+let frame = 0;
+let diameter = 0;
+let hover;
+let gesture;
+
+for (const country of sortedCountries) {
+  select.add(new Option(country.name, country.code));
+}
+form.hidden = false;
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  const country = getCountry(select.value);
+  if (country) location.assign(countryAddress(country));
+});
+
+function renderPath(geometry, fill, stroke, lineWidth = 1) {
+  context.beginPath();
+  path(geometry);
+  if (fill) {
+    context.fillStyle = fill;
+    context.fill();
+  }
+  if (stroke) {
+    context.strokeStyle = stroke;
+    context.lineWidth = lineWidth;
+    context.stroke();
+  }
+}
+
+function draw() {
+  frame = 0;
+  const size = canvas.clientWidth;
+  if (!size) return;
+  const pixels = Math.round(size * Math.min(devicePixelRatio || 1, 2));
+  if (canvas.width !== pixels || canvas.height !== pixels) {
+    canvas.width = pixels;
+    canvas.height = pixels;
+  }
+  context.setTransform(pixels / size, 0, 0, pixels / size, 0, 0);
+  context.clearRect(0, 0, size, size);
+  const mid = size / 2;
+  const radius = mid - 12;
+  diameter = radius * 2;
+  projection.rotate(rotation).scale(radius).translate([mid, mid]);
+
+  const ocean = context.createRadialGradient(mid - radius * .3, mid - radius * .4, 0, mid, mid, radius);
+  ocean.addColorStop(0, '#ebf4fb');
+  ocean.addColorStop(.75, '#c9e3f3');
+  ocean.addColorStop(1, '#9fc7e0');
+  renderPath({type: 'Sphere'}, ocean, '#7897ad');
+  renderPath(graticule, null, '#7897ad55', .55);
+  for (const {country, geometry} of shapes) {
+    const fill = country === hover ? '#78aed1' : counts.has(country) ? '#a6cee6' : '#f6f2e7';
+    renderPath(geometry, fill, '#8496a0', .55);
+  }
+
+  const center = rotation.map(angle => -angle);
+  dots = countries.filter(country => country.dot && geoDistance(center, country.point) < Math.PI / 2)
+    .map(country => ({country, xy: projection(country.point)}));
+  for (const {country, xy} of dots) {
+    context.beginPath();
+    context.arc(...xy, country === hover || counts.has(country) ? 5 : 2.2, 0, 2 * Math.PI);
+    context.fillStyle = country === hover ? '#172f41' : '#215a7b';
+    context.fill();
+    context.strokeStyle = '#f7f4ed';
+    context.lineWidth = 1;
+    context.stroke();
+  }
+}
+
+function requestDraw() {
+  if (!frame) frame = requestAnimationFrame(draw);
+}
+
+function rotate(x, y) {
+  rotation = [
+    (rotation[0] + x) % 360,
+    Math.max(-89, Math.min(89, rotation[1] + y)),
+  ];
+  showCountry(undefined);
+  requestDraw();
+}
+
+function countryAt(x, y) {
+  const center = canvas.clientWidth / 2;
+  if (Math.hypot(x - center, y - center) > diameter / 2) return undefined;
+  let nearest;
+  let distance = 14;
+  for (const dot of dots) {
+    const delta = Math.hypot(x - dot.xy[0], y - dot.xy[1]);
+    if (delta >= distance) continue;
+    distance = delta;
+    nearest = dot.country;
+  }
+  if (nearest) return nearest;
+  const position = projection.invert([x, y]);
+  return shapes.find(shape => geoContains(shape.geometry, position))?.country;
+}
+
+function showCountry(country) {
+  if (country === hover) return;
+  hover = country;
+  canvas.toggleAttribute('data-hover', Boolean(country));
+  if (country) status.replaceChildren(countryLabel(country));
+  else status.textContent = '';
+  requestDraw();
+}
+
+function startGlobe() {
+  new ResizeObserver(requestDraw).observe(canvas);
+  requestDraw();
+  status.textContent = '';
+  reset.hidden = false;
+  reset.addEventListener('click', () => {
+    rotation = [...initialRotation];
+    showCountry(undefined);
+    requestDraw();
+  });
+
+  const step = {ArrowLeft: [-12, 0], ArrowRight: [12, 0], ArrowUp: [0, -12], ArrowDown: [0, 12]};
+  canvas.addEventListener('keydown', event => {
+    if (!Object.hasOwn(step, event.key)) return;
+    event.preventDefault();
+    rotate(...step[event.key]);
+  });
+  canvas.addEventListener('pointerdown', event => {
+    if (!event.isPrimary || event.button !== 0) return;
+    canvas.setPointerCapture(event.pointerId);
+    gesture = {id: event.pointerId, startX: event.offsetX, startY: event.offsetY, x: event.offsetX, y: event.offsetY, moved: false};
+  });
+  canvas.addEventListener('pointermove', event => {
+    const {offsetX: x, offsetY: y} = event;
+    if (!gesture) {
+      if (event.pointerType === 'mouse') showCountry(countryAt(x, y));
+      return;
+    }
+    if (event.pointerId !== gesture.id) return;
+    if (!gesture.moved && Math.hypot(x - gesture.startX, y - gesture.startY) < 5) return;
+    gesture.moved = true;
+    canvas.setAttribute('data-dragging', '');
+    const degrees = 135 / diameter;
+    rotate((x - gesture.x) * degrees, (gesture.y - y) * degrees);
+    gesture.x = x;
+    gesture.y = y;
+  });
+  canvas.addEventListener('pointerup', event => {
+    if (event.pointerId !== gesture?.id) return;
+    const clicked = !gesture.moved;
+    gesture = undefined;
+    canvas.removeAttribute('data-dragging');
+    if (!clicked) return;
+    const country = countryAt(event.offsetX, event.offsetY);
+    if (country) location.assign(countryAddress(country));
+  });
+  canvas.addEventListener('lostpointercapture', event => {
+    if (event.pointerId !== gesture?.id) return;
+    gesture = undefined;
+    canvas.removeAttribute('data-dragging');
+  });
+  canvas.addEventListener('pointerleave', () => showCountry(undefined));
+}
+
+async function loadGlobe() {
+  if (!context) throw new Error('Canvas indisponível.');
+  const response = await fetch(new URL('fronteiras.json', import.meta.url));
+  if (!response.ok) throw new Error('Mapa indisponível.');
+  const borders = await response.json();
+  shapes = borders.map(([code, coordinates]) => ({
+    country: getCountry(code),
+    geometry: {type: 'MultiPolygon', coordinates},
+  }));
+  startGlobe();
+}
+
+async function loadPhotoList() {
+  const photos = await loadPhotos();
+  for (const photo of photos) {
+    const country = getCountry(photo.country);
+    if (country) counts.set(country, (counts.get(country) ?? 0) + 1);
+  }
+  for (const country of sortedCountries.filter(item => counts.has(item))) {
+    const count = counts.get(country);
+    const row = document.createElement('li');
+    const link = document.createElement('a');
+    const total = document.createElement('span');
+    link.href = countryAddress(country);
+    total.className = 'country-count';
+    total.textContent = count === 1 ? '1 foto' : count + ' fotos';
+    link.append(countryLabel(country), total);
+    row.append(link);
+    photoList.append(row);
+  }
+  if (shapes.length) requestDraw();
+}
+
+await Promise.all([
+  loadGlobe().catch(error => {
+    status.textContent = 'Não foi possível carregar o globo. Escolha um país na lista.';
+    canvas.hidden = true;
+    console.error(error);
+  }),
+  loadPhotoList().catch(error => {
+    const row = document.createElement('li');
+    row.textContent = 'Não foi possível carregar as fotografias.';
+    photoList.append(row);
+    console.error(error);
+  }),
+]);
