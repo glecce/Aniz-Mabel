@@ -1,9 +1,9 @@
-@import url("./cores.css?v=20261120-6");
+@import url("./cores.css?v=20261120-7");
 
-:root { font: 16px/1.45 Arial, Helvetica, sans-serif; }
+:root { line-height: 1.45; }
 
 * { box-sizing: border-box; }
-body { margin: 0; }
+body { margin: 0; font-size: 1.125rem; }
 a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
 .edition { width: min(94%, 1510px); margin-inline: auto; }
 .front .edition { padding-block: clamp(1rem, 4vw, 3.1rem); }
@@ -16,10 +16,9 @@ a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
   border-top: 3px solid var(--accent);
 }
 .cover h1 {
-  font: 400 clamp(3.35rem, 14.6vw, 14rem)/.8 var(--serif);
+  font: 600 clamp(3.35rem, 14.6vw, 14rem)/1 var(--display-font);
   text-align: center;
-  letter-spacing: -.078em;
-  margin: 0 .07em 0 0;
+  margin: 0;
 }
 
 .areas {
@@ -33,7 +32,7 @@ a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
   min-height: clamp(320px, 44vw, 650px);
   padding: clamp(.85rem, 2vw, 2rem);
 }
-.area span { font: 400 clamp(2.5rem, 5vw, 6.5rem)/.88 var(--serif); letter-spacing: -.05em; }
+.area span { font: 600 clamp(2.5rem, 5vw, 6.5rem)/1 var(--display-font); }
 .area-texto { background: var(--background); border: 1px solid var(--line); }
 .area-musica { background: var(--accent); }
 .area-visual { background: var(--accent-soft); }
@@ -53,11 +52,11 @@ a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
   padding: 1rem 0;
   border-bottom: 1px solid var(--line);
 }
-.section-header > a { font: 400 1.6rem/1 var(--serif); letter-spacing: -.035em; }
-.section-header nav { display: flex; flex-wrap: wrap; gap: 1rem; font-size: .925rem; }
+.section-header > a { font: 600 1.9rem/1 var(--display-font); }
+.section-header nav { display: flex; flex-wrap: wrap; gap: 1rem; }
 .section-header nav a[aria-current=page] { background-color: var(--accent); }
 .section-content { padding-block: clamp(2.6rem, 9vw, 9rem); }
-.section-content h1 { margin: 0 0 .6rem; font: 400 clamp(3.5rem, 11vw, 10rem)/.88 var(--serif); letter-spacing: -.055em; }
+.section-content h1 { margin: 0 0 .6rem; font: 600 clamp(3.5rem, 11vw, 10rem)/1 var(--display-font); }
 .section-content p { color: var(--muted); }
 
 @media (max-width: 680px) {

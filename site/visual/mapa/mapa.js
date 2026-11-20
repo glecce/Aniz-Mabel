@@ -112,7 +112,7 @@ function showCountry(country) {
   if (country === hover) return;
   hover = country;
   canvas.toggleAttribute('data-hover', Boolean(country));
-  canvas.title = country?.name ?? '';
+  canvas.title = country?.name.toLowerCase() ?? '';
   status.textContent = canvas.title;
   requestDraw();
 }

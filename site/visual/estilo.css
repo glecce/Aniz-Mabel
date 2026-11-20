@@ -1,13 +1,12 @@
-@import url("../assets/cores.css?v=20261120-6");
+@import url("../assets/cores.css?v=20261120-7");
 
 :root {
-  --mono: 'Courier New', monospace;
   --gap: 3px;
   --bar: 65px;
 }
 * { box-sizing: border-box; }
-body { margin: 0; min-height: 100vh; font: 16px/1.35 Arial, Helvetica, sans-serif; }
-button { font: inherit; color: inherit; cursor: pointer; }
+body { margin: 0; min-height: 100vh; font-size: 1.125rem; line-height: 1.35; }
+button { font: inherit; color: inherit; text-transform: inherit; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 [hidden] { display: none !important; }
 
@@ -20,8 +19,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
   padding: .4rem clamp(.75rem, 2vw, 2rem);
   border-bottom: 1px solid var(--line);
 }
-.masthead h1 { grid-column: 2; margin: 0; font: 400 clamp(1.65rem, 2.4vw, 2.5rem)/1 var(--serif); letter-spacing: -.045em; }
-.masthead nav { display: flex; justify-content: end; align-items: center; flex-wrap: wrap; column-gap: clamp(.65rem, 1.35vw, 1.3rem); font-size: .9rem; }
+.masthead h1 { grid-column: 2; margin: 0; font: 600 clamp(1.65rem, 2.4vw, 2.5rem)/1 var(--display-font); }
+.masthead nav { display: flex; justify-content: end; align-items: center; flex-wrap: wrap; column-gap: clamp(.65rem, 1.35vw, 1.3rem); font-size: 1.075rem; }
 .masthead nav a { display: inline-flex; align-items: center; min-height: 40px; padding-inline: .25rem; }
 .masthead nav a[aria-current] { background-color: var(--accent); }
 
@@ -65,7 +64,7 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
   padding: .65rem clamp(.75rem, 2vw, 1.6rem);
   border-bottom: 1px solid var(--line);
 }
-.viewer-counter { margin: 0; color: var(--muted); font: .88rem var(--mono); }
+.viewer-counter { margin: 0; color: var(--muted); font-size: 1rem; }
 .viewer-close, .viewer-nav {
   border: 1px solid var(--focus);
   background: var(--accent);
@@ -95,7 +94,7 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
   display: flex;
   flex-wrap: wrap;
   gap: .2rem .45rem;
-  font: .9rem/1.4 var(--mono);
+  line-height: 1.4;
   margin-bottom: .45rem;
 }
 .photo-data-context:empty { display: none; }
@@ -107,8 +106,8 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
 .photo-data { display: flex; flex-wrap: wrap; gap: .35rem clamp(.65rem, 2vw, 1.65rem); margin: 0; }
 .photo-data div { min-width: 0; }
 .photo-data dt, .photo-data dd { display: inline; }
-.photo-data dt { font-size: .825rem; color: var(--muted); }
-.photo-data dd { margin: 0 0 0 .35rem; font: .9rem/1.4 var(--mono); overflow-wrap: anywhere; }
+.photo-data dt { color: var(--muted); }
+.photo-data dd { margin: 0 0 0 .35rem; overflow-wrap: anywhere; }
 .photo-data dd[data-missing] { color: var(--muted); }
 
 .project-page {
@@ -116,12 +115,12 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
   margin-inline: auto;
   padding: clamp(2rem, 12vh, 8rem) clamp(1rem, 4vw, 4rem);
 }
-.project-page h2 { font: 400 clamp(2.6rem, 9vw, 7rem)/.9 var(--serif); letter-spacing: -.055em; margin: 0 0 1.4rem; }
+.project-page h2 { font: 600 clamp(2.6rem, 9vw, 7rem)/1 var(--display-font); margin: 0 0 1.4rem; }
 .project-empty { color: var(--muted); border-top: 1px solid var(--line); padding-top: .95rem; }
 .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px),1fr)); gap: 1.6rem; }
 .project-grid article { min-width: 0; }
 .project-grid img, .project-grid video { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: var(--accent-soft); }
-.project-grid h3 { margin: .55rem 0; font: 400 1.4rem var(--serif); }
+.project-grid h3 { margin: .55rem 0; font: 600 1.7rem var(--display-font); }
 .project-grid p { margin: 0; color: var(--muted); }
 
 @media (min-width: 1480px) { .photo-wall { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
@@ -139,7 +138,7 @@ body:has(.photo-viewer[open]) { overflow: hidden; }
 }
 @media (max-width: 460px) {
   .photo-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 36vw; }
-  .masthead nav { font-size: .86rem; column-gap: .75rem; }
+  .masthead nav { font-size: 1rem; column-gap: .75rem; }
 }
 @media (prefers-reduced-motion: reduce) { .wall-photo img { transition: none; } }
 

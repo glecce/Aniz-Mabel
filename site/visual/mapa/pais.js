@@ -15,7 +15,7 @@ if (!country) {
   status.textContent = 'Return to the map to choose a country.';
 } else {
   title.replaceChildren(countryFlag(country), country.name);
-  document.title = country.name + ' — Aniz Mabel';
+  document.title = country.name.toLowerCase() + ' — Aniz Mabel';
 
   try {
     const response = await fetch(new URL('conteudos.json', import.meta.url));

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Shadows+Into+Light&display=swap');
+
 :root {
   color-scheme: light;
   --background: #f7f4ed;
@@ -7,10 +9,15 @@
   --accent: #b9ddf3;
   --accent-soft: #dfedf8;
   --focus: #215a7b;
-  --serif: Baskerville, 'Iowan Old Style', Georgia, serif;
+  --display-font: 'Dancing Script', 'Brush Script MT', cursive;
+  --text-font: 'Shadows Into Light', 'Segoe Print', cursive;
+  font-family: var(--text-font);
+  text-transform: lowercase;
   color: var(--ink);
   background: var(--background);
 }
+
+.brand-name { text-transform: none; }
 
 a {
   display: inline-block;
