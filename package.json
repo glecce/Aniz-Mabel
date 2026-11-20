@@ -1,0 +1,15 @@
+{
+  "name": "aniz-mabel",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "config": {
+    "site_url": "https://anizmabel.com",
+    "media_url": "https://media.anizmabel.com"
+  },
+  "scripts": {
+    "check": "node scripts/check-site.mjs",
+    "foto": "node scripts/adicionar-foto.mjs"
+  }
+}

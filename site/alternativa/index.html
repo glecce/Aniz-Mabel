@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Galeria de fotografia de Aniz Mabel.">
+  <title>Aniz Mabel — Fotografias</title>
+  <link rel="stylesheet" href="/alternativa/editorial.css">
+  <script type="module" src="/alternativa/editorial.js"></script>
+  <link rel="canonical" href="https://anizmabel.com/alternativa/">
+</head>
+<body>
+  <header class="masthead">
+    <h1><a href="/alternativa/" aria-label="Aniz Mabel — fotografias">Aniz Mabel</a></h1>
+    <nav aria-label="Portfólio">
+      <a href="/alternativa/" aria-current="page">Fotos</a>
+      <a href="/alternativa/video/">Vídeo</a>
+      <a href="/alternativa/colagem/">Colagem</a>
+      <a href="/alternativa/pinturas-desenhos/">Pinturas e desenhos</a>
+    </nav>
+  </header>
+  <main>
+    <div class="photo-wall" aria-label="Galeria de fotografias"></div>
+    <p class="wall-status" role="status"></p>
+    <noscript><p class="wall-status">Ative o JavaScript para abrir as fotografias.</p></noscript>
+  </main>
+  <dialog class="photo-viewer" aria-label="Fotografia ampliada">
+    <header class="viewer-bar">
+      <p class="viewer-counter" aria-live="polite"></p>
+      <form method="dialog"><button type="submit" class="viewer-close" autofocus>Fechar <span aria-hidden="true">×</span></button></form>
+    </header>
+    <div class="viewer-content">
+      <div class="viewer-frame">
+        <button type="button" class="viewer-nav viewer-prev" aria-label="Foto anterior">‹</button>
+        <img class="viewer-image" alt="">
+        <button type="button" class="viewer-nav viewer-next" aria-label="Próxima foto">›</button>
+      </div>
+      <aside class="viewer-details" aria-label="Dados da fotografia">
+        <h2 class="viewer-title"></h2>
+        <p class="viewer-location"></p>
+        <dl class="photo-data"></dl>
+      </aside>
+    </div>
+  </dialog>
+</body>
+</html>
