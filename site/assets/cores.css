@@ -19,6 +19,17 @@
 
 .brand-name { text-transform: none; }
 
+.back-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  vertical-align: middle;
+  background-color: currentColor;
+  -webkit-mask: url('/assets/back.png') center / contain no-repeat;
+  mask: url('/assets/back.png') center / contain no-repeat;
+}
+
 button, input, select, textarea { font-family: inherit; }
 
 a {
