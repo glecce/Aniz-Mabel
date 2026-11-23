@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
 
 :root {
   color-scheme: light;
@@ -9,8 +9,8 @@
   --accent: #b9ddf3;
   --accent-soft: #dfedf8;
   --focus: #215a7b;
-  --display-font: 'Dancing Script', 'Brush Script MT', cursive;
-  --text-font: 'Shadows Into Light', 'Segoe Print', cursive;
+  --display-font: 'Merriweather', Georgia, serif;
+  --text-font: 'Merriweather', Georgia, serif;
   font-family: var(--text-font);
   text-transform: lowercase;
   color: var(--ink);
@@ -19,11 +19,13 @@
 
 .brand-name { text-transform: none; }
 
+button, input, select, textarea { font-family: inherit; }
+
 a {
   display: inline-block;
   color: inherit;
   text-decoration: none;
-  transition: color 160ms ease, background-color 160ms ease, scale 160ms ease;
+  transition: color 160ms ease, background-color 160ms ease;
 }
 
 a:focus-visible {
@@ -67,10 +69,6 @@ a:focus-visible {
     color: var(--focus);
     background-color: var(--accent);
   }
-}
-
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  a:hover { scale: 1.04; }
 }
 
 @media (prefers-reduced-motion: reduce) {

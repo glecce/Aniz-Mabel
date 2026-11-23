@@ -38,11 +38,6 @@ a:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
 .area span { font: 600 clamp(2.5rem, 5vw, 6.5rem)/1 var(--display-font); }
 .area:is(:hover, :focus-visible) { background-color: transparent; }
 
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .area:hover { scale: none; }
-  .area span { transform-origin: left bottom; transition: scale 180ms ease; }
-  .area:hover span { scale: 1.045; }
-}
 
 .section-header {
   display: flex;
